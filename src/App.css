@@ -1,38 +1,317 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #1a1a2e;
+  color: #eee;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Menu Styles */
+.menu {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #2d1b4e 0%, #1a1a2e 100%);
+  border-radius: 20px;
+  border: 2px solid #4a3f6b;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.menu-title {
+  font-size: 2.8rem;
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+}
+
+.menu-subtitle {
+  font-size: 1.1rem;
+  color: #a0a0c0;
+  margin-bottom: 30px;
+}
+
+.menu-instruction {
+  font-size: 1rem;
+  color: #c0c0e0;
+  margin-bottom: 20px;
+}
+
+.menu-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  max-width: 500px;
+  margin: 0 auto 30px;
+}
+
+.menu-option {
+  background: #2a2a4a;
+  border: 2px solid #4a4a6a;
+  border-radius: 12px;
+  padding: 16px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 6px;
+}
+
+.menu-option:hover {
+  background: #3a3a5a;
+  border-color: #6a6a8a;
+  transform: translateY(-2px);
+}
+
+.menu-option.selected {
+  background: #4a2d6e;
+  border-color: #ffd700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.menu-option-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.menu-option-count {
+  font-size: 0.85rem;
+  color: #8888aa;
+}
+
+.menu-option.selected .menu-option-count {
+  color: #ffd700;
+}
+
+.difficulty-options {
+  display: flex;
+  gap: 12px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-bottom: 30px;
 }
 
-.App-link {
-  color: #61dafb;
+.difficulty-btn {
+  background: #2a2a4a;
+  border: 2px solid #4a4a6a;
+  border-radius: 12px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.difficulty-btn:hover {
+  background: #3a3a5a;
+  border-color: #6a6a8a;
+}
+
+.difficulty-btn.selected {
+  background: #4a2d6e;
+  border-color: #ffd700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.difficulty-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.difficulty-desc {
+  font-size: 0.75rem;
+  color: #8888aa;
+}
+
+.difficulty-btn.selected .difficulty-desc {
+  color: #ffd700;
+}
+
+.menu-start-btn {
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  color: #1a1a2e;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 40px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.menu-start-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+}
+
+.menu-start-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.menu-hint {
+  font-size: 0.85rem;
+  color: #666688;
+  margin-top: 20px;
+}
+
+/* Game Styles */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.game-canvas {
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  cursor: crosshair;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* HUD Styles */
+.hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  padding: 12px 20px;
+  background: rgba(26, 26, 46, 0.9);
+  border-radius: 12px;
+  border: 1px solid #4a4a6a;
+}
+
+.hud-score,
+.hud-timer,
+.hud-target {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.hud-target-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hud-target-char {
+  font-size: 2.2rem;
+  color: #fff;
+  background: rgba(255, 215, 0, 0.15);
+  padding: 4px 14px;
+  border-radius: 8px;
+  border: 2px solid #ffd700;
+}
+
+.hud-target-romanized {
+  font-size: 1rem;
+  color: #ffd700;
+  font-weight: 600;
+}
+
+.hud-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #8888aa;
+}
+
+.hud-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffd700;
+}
+
+.hud-value.low-time {
+  color: #ff4444;
+  animation: pulse 0.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Game Over Styles */
+.gameover {
+  text-align: center;
+  padding: 60px 40px;
+  background: linear-gradient(135deg, #2d1b4e 0%, #1a1a2e 100%);
+  border-radius: 20px;
+  border: 2px solid #4a3f6b;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.gameover-title {
+  font-size: 2.5rem;
+  color: #ffd700;
+  margin-bottom: 20px;
+}
+
+.gameover-score {
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+.gameover-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.gameover-btn {
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  color: #1a1a2e;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 30px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.gameover-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+}
+
+.gameover-btn.secondary {
+  background: #3a3a5a;
+  color: #fff;
+}
+
+.gameover-btn.secondary:hover {
+  background: #4a4a6a;
+  box-shadow: 0 5px 20px rgba(100, 100, 150, 0.3);
 }
