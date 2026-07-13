@@ -1,6 +1,4 @@
-import React from 'react';
-
-function HUD({ score, timeRemaining, lastHit, targetCharacter }) {
+function HUD({ score, timeRemaining, targetCharacter }) {
   const seconds = Math.ceil(timeRemaining / 1000);
   const isLowTime = seconds <= 10;
 

@@ -77,6 +77,3 @@ export const characterSets = {
   compound,
   all: [...vowels, ...consonants, ...compound],
 };
-
-const tamilCharacters = { vowels, consonants, compound };
-export default tamilCharacters;

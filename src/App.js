@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import Menu from './components/Menu';
 import Game from './components/Game';
 import './App.css';

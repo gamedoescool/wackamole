@@ -100,8 +100,6 @@ export function createGameState(characters, difficulty = 'medium') {
     spawnIntervalMin: preset.spawnIntervalMin,
     spawnIntervalMax: preset.spawnIntervalMax,
     molesPerBatch: preset.molesPerBatch,
-    lastHit: null,
-    lastHitTimer: 0,
     gameOver: false,
     hitEffects: [],
     wrongHitEffects: [],
@@ -225,13 +223,6 @@ export function updateGameState(state, dt) {
     .map((e) => ({ ...e, timer: e.timer + dt }))
     .filter((e) => e.timer < 400);
 
-  if (state.lastHitTimer > 0) {
-    state.lastHitTimer -= dt;
-    if (state.lastHitTimer <= 0) {
-      state.lastHit = null;
-    }
-  }
-
   return state;
 }
 
@@ -252,8 +243,6 @@ export function handleClick(state, x, y) {
 
       if (wasTarget) {
         state.score += 10;
-        state.lastHit = mole.character;
-        state.lastHitTimer = 1200;
         state.hitEffects.push({
           x: mole.x,
           y: mole.riseY - 10,
@@ -279,7 +268,7 @@ export function handleClick(state, x, y) {
         mole.hit = true;
       }
 
-      return wasTarget ? state.lastHit : null;
+      return wasTarget ? mole.character : null;
     }
   }
 
@@ -291,11 +280,5 @@ export {
   HOLE_HEIGHT,
   MOLE_WIDTH,
   MOLE_HEIGHT,
-  HOLE_ROWS,
-  HOLE_COLS,
-  HOLE_SPACING_X,
-  HOLE_SPACING_Y,
-  HOLE_START_X,
-  HOLE_START_Y,
   STATES,
 };

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback, useState } from 'react';
+import { useRef, useEffect, useCallback, useState } from 'react';
 import {
   createGameState,
   updateGameState,
@@ -143,7 +143,6 @@ function Game({ characters, difficulty, onGameOver }) {
   const [hudState, setHudState] = useState({
     score: 0,
     timeRemaining: 60000,
-    lastHit: null,
     targetCharacter: null,
   });
 
@@ -167,7 +166,6 @@ function Game({ characters, difficulty, onGameOver }) {
       setHudState({
         score: state.score,
         timeRemaining: state.timeRemaining,
-        lastHit: state.lastHit,
         targetCharacter: state.targetCharacter,
       });
 
@@ -246,7 +244,6 @@ function Game({ characters, difficulty, onGameOver }) {
       <HUD
         score={hudState.score}
         timeRemaining={hudState.timeRemaining}
-        lastHit={hudState.lastHit}
         targetCharacter={hudState.targetCharacter}
       />
       <canvas

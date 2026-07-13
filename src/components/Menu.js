@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { characterSets } from '../data/tamilCharacters';
 
 const MENU_OPTIONS = [
@@ -15,8 +15,8 @@ const DIFFICULTY_OPTIONS = [
 ];
 
 function Menu({ onStart }) {
-  const [selected, setSelected] = React.useState(null);
-  const [difficulty, setDifficulty] = React.useState('medium');
+  const [selected, setSelected] = useState(null);
+  const [difficulty, setDifficulty] = useState('medium');
 
   const handleStart = () => {
     if (selected) {
