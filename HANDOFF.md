@@ -96,8 +96,6 @@ The engine is a set of pure functions that mutate a plain state object. No DOM, 
   spawnIntervalMin: 1500,   // from difficulty preset
   spawnIntervalMax: 3000,   // from difficulty preset
   molesPerBatch: 5,         // from difficulty preset
-  lastHit: null,
-  lastHitTimer: 0,
   gameOver: false,
   hitEffects: [],           // floating "+10" animations
   wrongHitEffects: [],      // floating "X" animations
@@ -141,9 +139,9 @@ requestAnimationFrame callback:
   3. setHudState({...})              — triggers React HUD re-render
   4. Clear canvas
   5. drawBackground(ctx)             — gradient sky, sun
-  6. drawHoles(ctx, holes)           — all 16 hole ellipses
+  6. drawHoleInteriors(ctx, holes)   — dark ellipses behind moles
   7. drawMoleBody(ctx, mole, hole)   — for each non-hidden mole
-  8. Re-draw hole rims over visible moles (layering fix)
+  8. drawHoleRims(ctx, holes)        — brown rims on top of moles
   9. drawHitEffects / drawWrongHitEffects
   10. If gameOver → onGameOver(score), stop loop
 ```
@@ -263,28 +261,26 @@ Add entries to the appropriate array in `tamilCharacters.js`:
 
 ### Adding High Scores
 
-Use localStorage in `App.js`:
+Scores are persisted in `localStorage` under key `tamilWamScores` (top 10). The leaderboard is displayed on the game-over screen. To extend:
 ```js
-// On game over:
-const highScores = JSON.parse(localStorage.getItem('tamilWamScores') || '[]');
-highScores.push(finalScore);
-localStorage.setItem('tamilWamScores', JSON.stringify(highScores));
+// Current shape in localStorage:
+[{ score: 100, difficulty: 'medium', date: 1720000000000 }, ...]
 ```
 
 ## Known Issues
 
 1. **Audio placeholder** — `public/audio/` directory doesn't exist. `playPlaceholderAudio()` silently fails. Add real audio files to enable pronunciation feedback.
 
-2. **HTML metadata still says CRA defaults** — `public/index.html` title is "React App", `manifest.json` says "Create React App Sample".
+2. ~~**HTML metadata still says CRA defaults**~~ — Fixed. Title and description were already customized; removed broken `logo192.png` reference from `index.html`.
 
-3. **Unused CRA boilerplate** — `src/logo.svg`, `src/reportWebVitals.js` are not meaningfully used.
+3. ~~**Unused CRA boilerplate**~~ — Resolved. `src/logo.svg`, `src/reportWebVitals.js`, and `src/index.css` were already removed.
 
-4. **No score persistence** — Scores are lost on page refresh (no localStorage).
+4. ~~**No score persistence**~~ — Fixed. Scores are saved to `localStorage` (top 10 leaderboard) and displayed on the game-over screen.
 
-5. **Hole re-drawing redundancy** — `drawHoles()` draws all 16 holes, then the mole loop re-draws hole rims for layering. Functional but draws some ellipses twice.
+5. ~~**Hole re-drawing redundancy**~~ — Fixed. Drawing split into `drawHoleInteriors()` (behind moles) and `drawHoleRims()` (on top of moles) with a single pass — no more redundant ellipses.
 
-6. **No mobile touch events** — Only `onClick` is handled. Touch devices will work via browser click emulation, but no dedicated touch handling.
+6. ~~**No mobile touch events**~~ — Fixed. `onTouchStart` handler added to the canvas with `touch-action: none` CSS to prevent browser gesture interference.
 
-7. **Single smoke test** — Only `App.test.js` exists (checks menu title renders). No engine logic tests.
+7. ~~**Single smoke test**~~ — Fixed. Added `engine.test.js` with comprehensive tests for `createGameState`, `updateGameState`, `handleClick`, and all game constants.
 
-8. **`lastHit` prop passed to HUD but not rendered** — Engine tracks `lastHit` and `lastHitTimer`, passes them to HUD, but HUD component doesn't display them. Dead data path.
+8. ~~**`lastHit` prop passed to HUD but not rendered**~~ — Was never implemented. Removed stale `lastHit`/`lastHitTimer` references from HANDOFF.md state shape docs.

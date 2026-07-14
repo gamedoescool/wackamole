@@ -50,21 +50,25 @@ function drawBackground(ctx) {
   }
 }
 
-function drawHoles(ctx, holes) {
+function drawHoleInteriors(ctx, holes) {
   holes.forEach((hole) => {
     ctx.fillStyle = 'rgba(0,0,0,0.15)';
     ctx.beginPath();
     ctx.ellipse(hole.x + 2, hole.y + 3, HOLE_WIDTH / 2 + 6, HOLE_HEIGHT / 2 + 2, 0, 0, Math.PI * 2);
     ctx.fill();
 
-    ctx.fillStyle = '#5C3D0E';
-    ctx.beginPath();
-    ctx.ellipse(hole.x, hole.y, HOLE_WIDTH / 2 + 8, HOLE_HEIGHT / 2 + 4, 0, 0, Math.PI * 2);
-    ctx.fill();
-
     ctx.fillStyle = '#1A0E03';
     ctx.beginPath();
     ctx.ellipse(hole.x, hole.y, HOLE_WIDTH / 2, HOLE_HEIGHT / 2, 0, 0, Math.PI * 2);
+    ctx.fill();
+  });
+}
+
+function drawHoleRims(ctx, holes) {
+  holes.forEach((hole) => {
+    ctx.fillStyle = '#5C3D0E';
+    ctx.beginPath();
+    ctx.ellipse(hole.x, hole.y, HOLE_WIDTH / 2 + 8, HOLE_HEIGHT / 2 + 4, 0, 0, Math.PI * 2);
     ctx.fill();
   });
 }
@@ -171,30 +175,13 @@ function Game({ characters, difficulty, onGameOver }) {
 
       ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
       drawBackground(ctx);
-      drawHoles(ctx, state.holes);
+      drawHoleInteriors(ctx, state.holes);
 
       state.moles.forEach((mole, i) => {
         drawMoleBody(ctx, mole, state.holes[i]);
       });
 
-      state.holes.forEach((hole, i) => {
-        const mole = state.moles[i];
-        if (mole.state === STATES.HIDDEN) {
-          ctx.fillStyle = '#5C3D0E';
-          ctx.beginPath();
-          ctx.ellipse(hole.x, hole.y, HOLE_WIDTH / 2 + 8, HOLE_HEIGHT / 2 + 4, 0, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.fillStyle = '#1A0E03';
-          ctx.beginPath();
-          ctx.ellipse(hole.x, hole.y, HOLE_WIDTH / 2, HOLE_HEIGHT / 2, 0, 0, Math.PI * 2);
-          ctx.fill();
-        } else {
-          ctx.fillStyle = '#5C3D0E';
-          ctx.beginPath();
-          ctx.ellipse(hole.x, hole.y, HOLE_WIDTH / 2 + 8, HOLE_HEIGHT / 2 + 4, 0, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      });
+      drawHoleRims(ctx, state.holes);
 
       drawHitEffects(ctx, state.hitEffects);
       drawWrongHitEffects(ctx, state.wrongHitEffects);
@@ -239,6 +226,27 @@ function Game({ characters, difficulty, onGameOver }) {
     }
   }, []);
 
+  const handleTouchStart = useCallback((e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    if (!touch) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = CANVAS_WIDTH / rect.width;
+    const scaleY = CANVAS_HEIGHT / rect.height;
+    const x = (touch.clientX - rect.left) * scaleX;
+    const y = (touch.clientY - rect.top) * scaleY;
+
+    const state = gameStateRef.current;
+    if (!state) return;
+
+    const hitChar = handleClick(state, x, y);
+    if (hitChar) {
+      playPlaceholderAudio(hitChar);
+    }
+  }, []);
+
   return (
     <div className="game-container">
       <HUD
@@ -252,6 +260,7 @@ function Game({ characters, difficulty, onGameOver }) {
         height={CANVAS_HEIGHT}
         className="game-canvas"
         onClick={handleCanvasClick}
+        onTouchStart={handleTouchStart}
       />
     </div>
   );

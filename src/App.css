@@ -191,6 +191,7 @@ body {
   display: block;
   max-width: 100%;
   height: auto;
+  touch-action: none;
 }
 
 /* HUD Styles */
@@ -314,4 +315,50 @@ body {
 .gameover-btn.secondary:hover {
   background: #4a4a6a;
   box-shadow: 0 5px 20px rgba(100, 100, 150, 0.3);
+}
+
+/* Leaderboard Styles */
+.leaderboard {
+  margin-bottom: 30px;
+}
+
+.leaderboard-title {
+  font-size: 1.2rem;
+  color: #ffd700;
+  margin-bottom: 12px;
+}
+
+.leaderboard-table {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.leaderboard-table th {
+  color: #8888aa;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #4a4a6a;
+}
+
+.leaderboard-table td {
+  color: #c0c0e0;
+}
+
+.leaderboard-table tr.leaderboard-current td {
+  color: #ffd700;
+  font-weight: 700;
+}
+
+.leaderboard-difficulty {
+  text-transform: capitalize;
 }
