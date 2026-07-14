@@ -27,19 +27,19 @@ function playPlaceholderAudio(character) {
 
 function drawBackground(ctx) {
   const skyGrad = ctx.createLinearGradient(0, 0, 0, CANVAS_HEIGHT);
-  skyGrad.addColorStop(0, '#87CEEB');
-  skyGrad.addColorStop(0.35, '#B0E0E6');
-  skyGrad.addColorStop(0.5, '#7CBA3F');
-  skyGrad.addColorStop(1, '#5A8F29');
+  skyGrad.addColorStop(0, '#C4A882');
+  skyGrad.addColorStop(0.35, '#BFA88E');
+  skyGrad.addColorStop(0.5, '#8D7B5E');
+  skyGrad.addColorStop(1, '#6B5B3E');
   ctx.fillStyle = skyGrad;
   ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-  ctx.fillStyle = '#FFD700';
+  ctx.fillStyle = '#C9A96E';
   ctx.beginPath();
   ctx.arc(720, 55, 35, 0, Math.PI * 2);
   ctx.fill();
 
-  ctx.strokeStyle = '#FFD700';
+  ctx.strokeStyle = '#C9A96E';
   ctx.lineWidth = 2.5;
   for (let i = 0; i < 8; i++) {
     const angle = (i * Math.PI * 2) / 8;
@@ -95,7 +95,7 @@ function drawMoleBody(ctx, mole, hole) {
   );
 
   if (mole.character && visibleHeight > 30) {
-    ctx.fillStyle = '#FFFFFF';
+    ctx.fillStyle = '#EFEBE9';
     ctx.font = 'bold 26px sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
@@ -114,7 +114,7 @@ function drawHitEffects(ctx, effects) {
 
     ctx.save();
     ctx.globalAlpha = alpha;
-    ctx.fillStyle = '#4CFF4C';
+    ctx.fillStyle = '#7CB342';
     ctx.font = 'bold 28px sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
@@ -130,13 +130,28 @@ function drawWrongHitEffects(ctx, effects) {
 
     ctx.save();
     ctx.globalAlpha = alpha;
-    ctx.fillStyle = '#FF4444';
+    ctx.fillStyle = '#BF360C';
     ctx.font = 'bold 24px sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText('X', effect.x, effect.y - progress * 30);
     ctx.restore();
   });
+}
+
+function drawPauseOverlay(ctx) {
+  ctx.fillStyle = 'rgba(62, 39, 35, 0.7)';
+  ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
+  ctx.fillStyle = '#EFEBE9';
+  ctx.font = 'bold 48px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('PAUSED', CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 20);
+
+  ctx.fillStyle = '#A1887F';
+  ctx.font = '20px sans-serif';
+  ctx.fillText('Press Escape or click Resume', CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 + 30);
 }
 
 function Game({ characters, difficulty, onGameOver }) {
@@ -149,6 +164,20 @@ function Game({ characters, difficulty, onGameOver }) {
     timeRemaining: 60000,
     targetCharacter: null,
   });
+  const [isPaused, setIsPaused] = useState(false);
+  const isPausedRef = useRef(false);
+
+  const togglePause = useCallback(() => {
+    setIsPaused(prev => {
+      const next = !prev;
+      isPausedRef.current = next;
+      if (!next) {
+        // Reset lastTimeRef on unpause to prevent dt explosion
+        lastTimeRef.current = null;
+      }
+      return next;
+    });
+  }, []);
 
   const gameLoop = useCallback(
     (timestamp) => {
@@ -164,6 +193,21 @@ function Game({ characters, difficulty, onGameOver }) {
 
       const state = gameStateRef.current;
       if (!state || state.gameOver) return;
+
+      if (isPausedRef.current) {
+        ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        drawBackground(ctx);
+        drawHoleInteriors(ctx, state.holes);
+        state.moles.forEach((mole, i) => {
+          drawMoleBody(ctx, mole, state.holes[i]);
+        });
+        drawHoleRims(ctx, state.holes);
+        drawHitEffects(ctx, state.hitEffects);
+        drawWrongHitEffects(ctx, state.wrongHitEffects);
+        drawPauseOverlay(ctx);
+        rafRef.current = requestAnimationFrame(gameLoop);
+        return;
+      }
 
       updateGameState(state, dt);
 
@@ -201,12 +245,18 @@ function Game({ characters, difficulty, onGameOver }) {
     lastTimeRef.current = null;
     rafRef.current = requestAnimationFrame(gameLoop);
 
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') togglePause();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+
     return () => {
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }
+      document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [characters, difficulty, gameLoop]);
+  }, [characters, difficulty, gameLoop, togglePause]);
 
   const handleCanvasClick = useCallback((e) => {
     const canvas = canvasRef.current;
@@ -219,6 +269,7 @@ function Game({ characters, difficulty, onGameOver }) {
 
     const state = gameStateRef.current;
     if (!state) return;
+    if (isPausedRef.current) return;
 
     const hitChar = handleClick(state, x, y);
     if (hitChar) {
@@ -240,6 +291,7 @@ function Game({ characters, difficulty, onGameOver }) {
 
     const state = gameStateRef.current;
     if (!state) return;
+    if (isPausedRef.current) return;
 
     const hitChar = handleClick(state, x, y);
     if (hitChar) {
@@ -253,6 +305,8 @@ function Game({ characters, difficulty, onGameOver }) {
         score={hudState.score}
         timeRemaining={hudState.timeRemaining}
         targetCharacter={hudState.targetCharacter}
+        isPaused={isPaused}
+        onTogglePause={togglePause}
       />
       <canvas
         ref={canvasRef}

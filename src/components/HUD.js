@@ -1,4 +1,4 @@
-function HUD({ score, timeRemaining, targetCharacter }) {
+function HUD({ score, timeRemaining, targetCharacter, isPaused, onTogglePause }) {
   const seconds = Math.ceil(timeRemaining / 1000);
   const isLowTime = seconds <= 10;
 
@@ -17,6 +17,9 @@ function HUD({ score, timeRemaining, targetCharacter }) {
           </div>
         )}
       </div>
+      <button className="hud-pause-btn" onClick={onTogglePause}>
+        {isPaused ? 'Resume' : 'Pause'}
+      </button>
       <div className="hud-timer">
         <span className="hud-label">Time</span>
         <span className={`hud-value ${isLowTime ? 'low-time' : ''}`}>

@@ -84,6 +84,11 @@ describe('createGameState', () => {
     expect(state.visibleDuration).toBe(2000);
     expect(state.fallDuration).toBe(250);
   });
+
+  test('returns paused as false by default', () => {
+    const state = createGameState(testCharacters, 'medium');
+    expect(state.paused).toBe(false);
+  });
 });
 
 describe('updateGameState', () => {
@@ -212,6 +217,14 @@ describe('updateGameState', () => {
     expect(state.wrongHitEffects).toHaveLength(1);
     updateGameState(state, 300);
     expect(state.wrongHitEffects).toHaveLength(0);
+  });
+
+  test('does not update when paused', () => {
+    const state = createGameState(testCharacters, 'medium');
+    const initialTime = state.timeRemaining;
+    state.paused = true;
+    updateGameState(state, 1000);
+    expect(state.timeRemaining).toBe(initialTime);
   });
 });
 
@@ -352,6 +365,25 @@ describe('handleClick', () => {
     // Click well to the right of the mole
     const result = handleClick(state, mole.x + MOLE_WIDTH, mole.riseY + 10);
     expect(result).toBeNull();
+  });
+
+  test('returns null when paused', () => {
+    const state = createGameState(testCharacters, 'medium');
+    state.paused = true;
+    // Setup a visible mole at known position
+    const mole = state.moles[0];
+    const hole = state.holes[0];
+    mole.state = STATES.VISIBLE;
+    mole.x = hole.x;
+    mole.y = hole.y;
+    mole.riseY = hole.y - MOLE_HEIGHT;
+    mole.character = state.characters[0];
+    mole.isTarget = true;
+    mole.hit = false;
+
+    const result = handleClick(state, mole.x, mole.y - MOLE_HEIGHT / 2);
+    expect(result).toBeNull();
+    expect(state.score).toBe(0); // score should not change
   });
 });
 

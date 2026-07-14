@@ -6,8 +6,8 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #1a1a2e;
-  color: #eee;
+  background: #3E2723;
+  color: #EFEBE9;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -25,30 +25,26 @@ body {
 .menu {
   text-align: center;
   padding: 40px 20px;
-  background: linear-gradient(135deg, #2d1b4e 0%, #1a1a2e 100%);
+  background: #4E342E;
   border-radius: 20px;
-  border: 2px solid #4a3f6b;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border: 2px solid #5D4037;
 }
 
 .menu-title {
   font-size: 2.8rem;
-  background: linear-gradient(135deg, #ffd700, #ff8c00);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #D7CCC8;
   margin-bottom: 10px;
 }
 
 .menu-subtitle {
   font-size: 1.1rem;
-  color: #a0a0c0;
+  color: #A1887F;
   margin-bottom: 30px;
 }
 
 .menu-instruction {
   font-size: 1rem;
-  color: #c0c0e0;
+  color: #BCAAA4;
   margin-bottom: 20px;
 }
 
@@ -61,8 +57,8 @@ body {
 }
 
 .menu-option {
-  background: #2a2a4a;
-  border: 2px solid #4a4a6a;
+  background: #3E2723;
+  border: 2px solid #5D4037;
   border-radius: 12px;
   padding: 16px 12px;
   cursor: pointer;
@@ -74,30 +70,29 @@ body {
 }
 
 .menu-option:hover {
-  background: #3a3a5a;
-  border-color: #6a6a8a;
+  background: #4E342E;
+  border-color: #795548;
   transform: translateY(-2px);
 }
 
 .menu-option.selected {
-  background: #4a2d6e;
-  border-color: #ffd700;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  background: #5D4037;
+  border: 2px solid #8D6E63;
 }
 
 .menu-option-label {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #fff;
+  color: #EFEBE9;
 }
 
 .menu-option-count {
   font-size: 0.85rem;
-  color: #8888aa;
+  color: #8D6E63;
 }
 
 .menu-option.selected .menu-option-count {
-  color: #ffd700;
+  color: #A1887F;
 }
 
 .difficulty-options {
@@ -108,8 +103,8 @@ body {
 }
 
 .difficulty-btn {
-  background: #2a2a4a;
-  border: 2px solid #4a4a6a;
+  background: #3E2723;
+  border: 2px solid #5D4037;
   border-radius: 12px;
   padding: 12px 20px;
   cursor: pointer;
@@ -121,34 +116,33 @@ body {
 }
 
 .difficulty-btn:hover {
-  background: #3a3a5a;
-  border-color: #6a6a8a;
+  background: #4E342E;
+  border-color: #795548;
 }
 
 .difficulty-btn.selected {
-  background: #4a2d6e;
-  border-color: #ffd700;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  background: #5D4037;
+  border: 2px solid #8D6E63;
 }
 
 .difficulty-label {
   font-size: 1rem;
   font-weight: 600;
-  color: #fff;
+  color: #EFEBE9;
 }
 
 .difficulty-desc {
   font-size: 0.75rem;
-  color: #8888aa;
+  color: #8D6E63;
 }
 
 .difficulty-btn.selected .difficulty-desc {
-  color: #ffd700;
+  color: #A1887F;
 }
 
 .menu-start-btn {
-  background: linear-gradient(135deg, #ffd700, #ff8c00);
-  color: #1a1a2e;
+  background: #6D4C41;
+  color: #3E2723;
   border: none;
   border-radius: 12px;
   padding: 14px 40px;
@@ -162,7 +156,6 @@ body {
 
 .menu-start-btn:hover:not(:disabled) {
   transform: scale(1.05);
-  box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
 }
 
 .menu-start-btn:disabled {
@@ -172,7 +165,7 @@ body {
 
 .menu-hint {
   font-size: 0.85rem;
-  color: #666688;
+  color: #6D4C41;
   margin-top: 20px;
 }
 
@@ -186,7 +179,7 @@ body {
 
 .game-canvas {
   border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  border: 2px solid #5D4037;
   cursor: crosshair;
   display: block;
   max-width: 100%;
@@ -202,9 +195,25 @@ body {
   width: 100%;
   max-width: 800px;
   padding: 12px 20px;
-  background: rgba(26, 26, 46, 0.9);
+  background: rgba(62, 39, 35, 0.9);
   border-radius: 12px;
-  border: 1px solid #4a4a6a;
+  border: 1px solid #5D4037;
+}
+
+.hud-pause-btn {
+  background: #5D4037;
+  color: #EFEBE9;
+  border: 1px solid #795548;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.hud-pause-btn:hover {
+  background: #6D4C41;
 }
 
 .hud-score,
@@ -224,16 +233,16 @@ body {
 
 .hud-target-char {
   font-size: 2.2rem;
-  color: #fff;
-  background: rgba(255, 215, 0, 0.15);
+  color: #EFEBE9;
+  background: rgba(161, 136, 127, 0.15);
   padding: 4px 14px;
   border-radius: 8px;
-  border: 2px solid #ffd700;
+  border: 2px solid #A1887F;
 }
 
 .hud-target-romanized {
   font-size: 1rem;
-  color: #ffd700;
+  color: #A1887F;
   font-weight: 600;
 }
 
@@ -241,17 +250,17 @@ body {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #8888aa;
+  color: #8D6E63;
 }
 
 .hud-value {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #ffd700;
+  color: #A1887F;
 }
 
 .hud-value.low-time {
-  color: #ff4444;
+  color: #BF360C;
   animation: pulse 0.5s ease-in-out infinite;
 }
 
@@ -264,21 +273,20 @@ body {
 .gameover {
   text-align: center;
   padding: 60px 40px;
-  background: linear-gradient(135deg, #2d1b4e 0%, #1a1a2e 100%);
+  background: #4E342E;
   border-radius: 20px;
-  border: 2px solid #4a3f6b;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border: 2px solid #5D4037;
 }
 
 .gameover-title {
   font-size: 2.5rem;
-  color: #ffd700;
+  color: #A1887F;
   margin-bottom: 20px;
 }
 
 .gameover-score {
   font-size: 1.8rem;
-  color: #fff;
+  color: #EFEBE9;
   margin-bottom: 40px;
 }
 
@@ -289,8 +297,8 @@ body {
 }
 
 .gameover-btn {
-  background: linear-gradient(135deg, #ffd700, #ff8c00);
-  color: #1a1a2e;
+  background: #6D4C41;
+  color: #3E2723;
   border: none;
   border-radius: 12px;
   padding: 14px 30px;
@@ -304,17 +312,15 @@ body {
 
 .gameover-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
 }
 
 .gameover-btn.secondary {
-  background: #3a3a5a;
-  color: #fff;
+  background: #5D4037;
+  color: #EFEBE9;
 }
 
 .gameover-btn.secondary:hover {
-  background: #4a4a6a;
-  box-shadow: 0 5px 20px rgba(100, 100, 150, 0.3);
+  background: #6D4C41;
 }
 
 /* Leaderboard Styles */
@@ -324,7 +330,7 @@ body {
 
 .leaderboard-title {
   font-size: 1.2rem;
-  color: #ffd700;
+  color: #A1887F;
   margin-bottom: 12px;
 }
 
@@ -343,19 +349,19 @@ body {
 }
 
 .leaderboard-table th {
-  color: #8888aa;
+  color: #8D6E63;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border-bottom: 1px solid #4a4a6a;
+  border-bottom: 1px solid #5D4037;
 }
 
 .leaderboard-table td {
-  color: #c0c0e0;
+  color: #BCAAA4;
 }
 
 .leaderboard-table tr.leaderboard-current td {
-  color: #ffd700;
+  color: #A1887F;
   font-weight: 700;
 }
 

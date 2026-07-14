@@ -101,6 +101,7 @@ export function createGameState(characters, difficulty = 'medium') {
     spawnIntervalMax: preset.spawnIntervalMax,
     molesPerBatch: preset.molesPerBatch,
     gameOver: false,
+    paused: false,
     hitEffects: [],
     wrongHitEffects: [],
   };
@@ -196,6 +197,7 @@ function updateMole(mole, dt, state) {
 
 export function updateGameState(state, dt) {
   if (state.gameOver) return state;
+  if (state.paused) return state;
 
   state.timeRemaining -= dt;
   if (state.timeRemaining <= 0) {
@@ -228,6 +230,7 @@ export function updateGameState(state, dt) {
 
 export function handleClick(state, x, y) {
   if (state.gameOver) return null;
+  if (state.paused) return null;
 
   for (let i = 0; i < state.moles.length; i++) {
     const mole = state.moles[i];
