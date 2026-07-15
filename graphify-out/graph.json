@@ -11,6 +11,7 @@
       "_origin": "ast",
       "id": "package",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "package.json"
     },
     {
@@ -21,6 +22,7 @@
       "_origin": "ast",
       "id": "package_name",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "name"
     },
     {
@@ -31,6 +33,7 @@
       "_origin": "ast",
       "id": "package_version",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "version"
     },
     {
@@ -41,6 +44,7 @@
       "_origin": "ast",
       "id": "package_private",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "private"
     },
     {
@@ -51,6 +55,7 @@
       "_origin": "ast",
       "id": "package_dependencies",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "dependencies"
     },
     {
@@ -61,6 +66,7 @@
       "_origin": "ast",
       "id": "package_dependencies_react",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "react"
     },
     {
@@ -71,6 +77,7 @@
       "_origin": "ast",
       "id": "react",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "react"
     },
     {
@@ -81,6 +88,7 @@
       "_origin": "ast",
       "id": "package_dependencies_react_dom",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "react-dom"
     },
     {
@@ -91,6 +99,7 @@
       "_origin": "ast",
       "id": "react_dom",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "react-dom"
     },
     {
@@ -101,6 +110,7 @@
       "_origin": "ast",
       "id": "package_dependencies_react_scripts",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "react-scripts"
     },
     {
@@ -111,6 +121,7 @@
       "_origin": "ast",
       "id": "react_scripts",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "react-scripts"
     },
     {
@@ -120,7 +131,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "package_devdependencies",
-      "community": 4,
+      "community": 7,
+      "community_name": "devDependencies",
       "norm_label": "devdependencies"
     },
     {
@@ -130,7 +142,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "package_devdependencies_testing_library_dom",
-      "community": 4,
+      "community": 7,
+      "community_name": "devDependencies",
       "norm_label": "@testing-library/dom"
     },
     {
@@ -140,7 +153,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "testing_library_dom",
-      "community": 4,
+      "community": 7,
+      "community_name": "devDependencies",
       "norm_label": "@testing-library/dom"
     },
     {
@@ -150,7 +164,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "package_devdependencies_testing_library_jest_dom",
-      "community": 4,
+      "community": 7,
+      "community_name": "devDependencies",
       "norm_label": "@testing-library/jest-dom"
     },
     {
@@ -160,7 +175,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "testing_library_jest_dom",
-      "community": 4,
+      "community": 7,
+      "community_name": "devDependencies",
       "norm_label": "@testing-library/jest-dom"
     },
     {
@@ -170,7 +186,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "package_devdependencies_testing_library_react",
-      "community": 4,
+      "community": 7,
+      "community_name": "devDependencies",
       "norm_label": "@testing-library/react"
     },
     {
@@ -180,7 +197,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "testing_library_react",
-      "community": 4,
+      "community": 7,
+      "community_name": "devDependencies",
       "norm_label": "@testing-library/react"
     },
     {
@@ -190,7 +208,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "package_devdependencies_testing_library_user_event",
-      "community": 4,
+      "community": 7,
+      "community_name": "devDependencies",
       "norm_label": "@testing-library/user-event"
     },
     {
@@ -200,7 +219,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "testing_library_user_event",
-      "community": 4,
+      "community": 7,
+      "community_name": "devDependencies",
       "norm_label": "@testing-library/user-event"
     },
     {
@@ -211,6 +231,7 @@
       "_origin": "ast",
       "id": "package_scripts",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "scripts"
     },
     {
@@ -221,6 +242,7 @@
       "_origin": "ast",
       "id": "package_scripts_start",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "start"
     },
     {
@@ -231,6 +253,7 @@
       "_origin": "ast",
       "id": "package_scripts_build",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "build"
     },
     {
@@ -241,6 +264,7 @@
       "_origin": "ast",
       "id": "package_scripts_test",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "test"
     },
     {
@@ -251,6 +275,7 @@
       "_origin": "ast",
       "id": "package_scripts_eject",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "eject"
     },
     {
@@ -261,6 +286,7 @@
       "_origin": "ast",
       "id": "package_eslintconfig",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "eslintconfig"
     },
     {
@@ -271,6 +297,7 @@
       "_origin": "ast",
       "id": "package_eslintconfig_extends",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "extends"
     },
     {
@@ -281,6 +308,7 @@
       "_origin": "ast",
       "id": "ref_react_app",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "react-app"
     },
     {
@@ -291,6 +319,7 @@
       "_origin": "ast",
       "id": "ref_react_app_jest",
       "community": 0,
+      "community_name": "package.json",
       "norm_label": "react-app/jest"
     },
     {
@@ -301,6 +330,7 @@
       "_origin": "ast",
       "id": "package_browserslist",
       "community": 3,
+      "community_name": "development",
       "norm_label": "browserslist"
     },
     {
@@ -311,6 +341,7 @@
       "_origin": "ast",
       "id": "package_browserslist_production",
       "community": 3,
+      "community_name": "development",
       "norm_label": "production"
     },
     {
@@ -321,6 +352,7 @@
       "_origin": "ast",
       "id": "ref_0_2",
       "community": 3,
+      "community_name": "development",
       "norm_label": ">0.2%"
     },
     {
@@ -331,6 +363,7 @@
       "_origin": "ast",
       "id": "ref_not_dead",
       "community": 3,
+      "community_name": "development",
       "norm_label": "not dead"
     },
     {
@@ -341,6 +374,7 @@
       "_origin": "ast",
       "id": "ref_not_op_mini_all",
       "community": 3,
+      "community_name": "development",
       "norm_label": "not op_mini all"
     },
     {
@@ -351,6 +385,7 @@
       "_origin": "ast",
       "id": "package_browserslist_development",
       "community": 3,
+      "community_name": "development",
       "norm_label": "development"
     },
     {
@@ -361,6 +396,7 @@
       "_origin": "ast",
       "id": "ref_last_1_chrome_version",
       "community": 3,
+      "community_name": "development",
       "norm_label": "last 1 chrome version"
     },
     {
@@ -371,6 +407,7 @@
       "_origin": "ast",
       "id": "ref_last_1_firefox_version",
       "community": 3,
+      "community_name": "development",
       "norm_label": "last 1 firefox version"
     },
     {
@@ -381,6 +418,7 @@
       "_origin": "ast",
       "id": "ref_last_1_safari_version",
       "community": 3,
+      "community_name": "development",
       "norm_label": "last 1 safari version"
     },
     {
@@ -390,7 +428,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "public_manifest",
-      "community": 6,
+      "community": 5,
+      "community_name": "manifest.json",
       "norm_label": "manifest.json"
     },
     {
@@ -400,7 +439,8 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "public_manifest_short_name",
-      "community": 6,
+      "community": 5,
+      "community_name": "manifest.json",
       "norm_label": "short_name"
     },
     {
@@ -410,7 +450,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "public_manifest_name",
-      "community": 6,
+      "community": 5,
+      "community_name": "manifest.json",
       "norm_label": "name"
     },
     {
@@ -420,7 +461,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "public_manifest_icons",
-      "community": 6,
+      "community": 5,
+      "community_name": "manifest.json",
       "norm_label": "icons"
     },
     {
@@ -430,7 +472,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "public_manifest_start_url",
-      "community": 6,
+      "community": 5,
+      "community_name": "manifest.json",
       "norm_label": "start_url"
     },
     {
@@ -440,7 +483,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "public_manifest_display",
-      "community": 6,
+      "community": 5,
+      "community_name": "manifest.json",
       "norm_label": "display"
     },
     {
@@ -450,7 +494,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "public_manifest_theme_color",
-      "community": 6,
+      "community": 5,
+      "community_name": "manifest.json",
       "norm_label": "theme_color"
     },
     {
@@ -460,7 +505,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "public_manifest_background_color",
-      "community": 6,
+      "community": 5,
+      "community_name": "manifest.json",
       "norm_label": "background_color"
     },
     {
@@ -470,7 +516,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app",
-      "community": 7,
+      "community": 4,
+      "community_name": "Menu.js",
       "norm_label": "app.js"
     },
     {
@@ -480,7 +527,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_app_loadscores",
-      "community": 7,
+      "community": 4,
+      "community_name": "Menu.js",
       "norm_label": "loadscores()"
     },
     {
@@ -490,7 +538,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_app_savescore",
-      "community": 7,
+      "community": 4,
+      "community_name": "Menu.js",
       "norm_label": "savescore()"
     },
     {
@@ -500,7 +549,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_app_formatdate",
-      "community": 7,
+      "community": 4,
+      "community_name": "Menu.js",
       "norm_label": "formatdate()"
     },
     {
@@ -510,7 +560,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_app_app",
-      "community": 7,
+      "community": 4,
+      "community_name": "Menu.js",
       "norm_label": "app()"
     },
     {
@@ -520,7 +571,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_test",
-      "community": 7,
+      "community": 4,
+      "community_name": "Menu.js",
       "norm_label": "app.test.js"
     },
     {
@@ -531,97 +583,184 @@
       "_origin": "ast",
       "id": "src_components_game",
       "community": 2,
+      "community_name": "Game.js",
       "norm_label": "game.js"
+    },
+    {
+      "label": "COLORS",
+      "file_type": "code",
+      "source_file": "src/components/Game.js",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "src_components_game_colors",
+      "community": 2,
+      "community_name": "Game.js",
+      "norm_label": "colors"
+    },
+    {
+      "label": "initAudioSystem()",
+      "file_type": "code",
+      "source_file": "src/components/Game.js",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "src_components_game_initaudiosystem",
+      "community": 2,
+      "community_name": "Game.js",
+      "norm_label": "initaudiosystem()"
+    },
+    {
+      "label": "getAudioContext()",
+      "file_type": "code",
+      "source_file": "src/components/Game.js",
+      "source_location": "L62",
+      "_origin": "ast",
+      "id": "src_components_game_getaudiocontext",
+      "community": 2,
+      "community_name": "Game.js",
+      "norm_label": "getaudiocontext()"
+    },
+    {
+      "label": "playFallbackTone()",
+      "file_type": "code",
+      "source_file": "src/components/Game.js",
+      "source_location": "L69",
+      "_origin": "ast",
+      "id": "src_components_game_playfallbacktone",
+      "community": 2,
+      "community_name": "Game.js",
+      "norm_label": "playfallbacktone()"
     },
     {
       "label": "playPlaceholderAudio()",
       "file_type": "code",
       "source_file": "src/components/Game.js",
-      "source_location": "L17",
+      "source_location": "L106",
       "_origin": "ast",
       "id": "src_components_game_playplaceholderaudio",
       "community": 2,
+      "community_name": "Game.js",
       "norm_label": "playplaceholderaudio()"
     },
     {
       "label": "drawBackground()",
       "file_type": "code",
       "source_file": "src/components/Game.js",
-      "source_location": "L28",
+      "source_location": "L136",
       "_origin": "ast",
       "id": "src_components_game_drawbackground",
       "community": 2,
+      "community_name": "Game.js",
       "norm_label": "drawbackground()"
+    },
+    {
+      "label": "drawDirtMound()",
+      "file_type": "code",
+      "source_file": "src/components/Game.js",
+      "source_location": "L214",
+      "_origin": "ast",
+      "id": "src_components_game_drawdirtmound",
+      "community": 2,
+      "community_name": "Game.js",
+      "norm_label": "drawdirtmound()"
     },
     {
       "label": "drawHoleInteriors()",
       "file_type": "code",
       "source_file": "src/components/Game.js",
-      "source_location": "L53",
+      "source_location": "L267",
       "_origin": "ast",
       "id": "src_components_game_drawholeinteriors",
       "community": 2,
+      "community_name": "Game.js",
       "norm_label": "drawholeinteriors()"
     },
     {
       "label": "drawHoleRims()",
       "file_type": "code",
       "source_file": "src/components/Game.js",
-      "source_location": "L67",
+      "source_location": "L284",
       "_origin": "ast",
       "id": "src_components_game_drawholerims",
       "community": 2,
+      "community_name": "Game.js",
       "norm_label": "drawholerims()"
     },
     {
-      "label": "drawMoleBody()",
+      "label": "drawMoleSprite()",
       "file_type": "code",
       "source_file": "src/components/Game.js",
-      "source_location": "L76",
+      "source_location": "L301",
       "_origin": "ast",
-      "id": "src_components_game_drawmolebody",
+      "id": "src_components_game_drawmolesprite",
       "community": 2,
-      "norm_label": "drawmolebody()"
+      "community_name": "Game.js",
+      "norm_label": "drawmolesprite()"
     },
     {
-      "label": "drawHitEffects()",
+      "label": "drawWhackEffect()",
       "file_type": "code",
       "source_file": "src/components/Game.js",
-      "source_location": "L110",
+      "source_location": "L467",
       "_origin": "ast",
-      "id": "src_components_game_drawhiteffects",
+      "id": "src_components_game_drawwhackeffect",
       "community": 2,
-      "norm_label": "drawhiteffects()"
+      "community_name": "Game.js",
+      "norm_label": "drawwhackeffect()"
     },
     {
-      "label": "drawWrongHitEffects()",
+      "label": "drawWrongHitEffect()",
       "file_type": "code",
       "source_file": "src/components/Game.js",
-      "source_location": "L126",
+      "source_location": "L539",
       "_origin": "ast",
-      "id": "src_components_game_drawwronghiteffects",
+      "id": "src_components_game_drawwronghiteffect",
       "community": 2,
-      "norm_label": "drawwronghiteffects()"
+      "community_name": "Game.js",
+      "norm_label": "drawwronghiteffect()"
     },
     {
       "label": "drawPauseOverlay()",
       "file_type": "code",
       "source_file": "src/components/Game.js",
-      "source_location": "L142",
+      "source_location": "L579",
       "_origin": "ast",
       "id": "src_components_game_drawpauseoverlay",
       "community": 2,
+      "community_name": "Game.js",
       "norm_label": "drawpauseoverlay()"
     },
     {
       "label": "Game()",
       "file_type": "code",
       "source_file": "src/components/Game.js",
-      "source_location": "L157",
+      "source_location": "L594",
       "_origin": "ast",
       "id": "src_components_game_game",
       "community": 2,
+      "community_name": "Game.js",
       "norm_label": "game()"
+    },
+    {
+      "label": "drawWhackEffects()",
+      "file_type": "code",
+      "source_file": "src/components/Game.js",
+      "source_location": "L778",
+      "_origin": "ast",
+      "id": "src_components_game_drawwhackeffects",
+      "community": 2,
+      "community_name": "Game.js",
+      "norm_label": "drawwhackeffects()"
+    },
+    {
+      "label": "drawWrongHitEffects()",
+      "file_type": "code",
+      "source_file": "src/components/Game.js",
+      "source_location": "L782",
+      "_origin": "ast",
+      "id": "src_components_game_drawwronghiteffects",
+      "community": 2,
+      "community_name": "Game.js",
+      "norm_label": "drawwronghiteffects()"
     },
     {
       "label": "HUD.js",
@@ -631,6 +770,7 @@
       "_origin": "ast",
       "id": "src_components_hud",
       "community": 2,
+      "community_name": "Game.js",
       "norm_label": "hud.js"
     },
     {
@@ -641,6 +781,7 @@
       "_origin": "ast",
       "id": "src_components_hud_hud",
       "community": 2,
+      "community_name": "Game.js",
       "norm_label": "hud()"
     },
     {
@@ -650,7 +791,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_menu",
-      "community": 5,
+      "community": 4,
+      "community_name": "Menu.js",
       "norm_label": "menu.js"
     },
     {
@@ -660,7 +802,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_components_menu_menu_options",
-      "community": 5,
+      "community": 4,
+      "community_name": "Menu.js",
       "norm_label": "menu_options"
     },
     {
@@ -670,7 +813,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_components_menu_difficulty_options",
-      "community": 5,
+      "community": 4,
+      "community_name": "Menu.js",
       "norm_label": "difficulty_options"
     },
     {
@@ -680,7 +824,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_components_menu_menu",
-      "community": 5,
+      "community": 4,
+      "community_name": "Menu.js",
       "norm_label": "menu()"
     },
     {
@@ -690,7 +835,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_data_tamilcharacters",
-      "community": 5,
+      "community": 4,
+      "community_name": "Menu.js",
       "norm_label": "tamilcharacters.js"
     },
     {
@@ -700,7 +846,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_data_tamilcharacters_vowels",
-      "community": 5,
+      "community": 4,
+      "community_name": "Menu.js",
       "norm_label": "vowels"
     },
     {
@@ -710,7 +857,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_data_tamilcharacters_consonants",
-      "community": 5,
+      "community": 4,
+      "community_name": "Menu.js",
       "norm_label": "consonants"
     },
     {
@@ -720,7 +868,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "src_data_tamilcharacters_compound",
-      "community": 5,
+      "community": 4,
+      "community_name": "Menu.js",
       "norm_label": "compound"
     },
     {
@@ -730,7 +879,8 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "src_data_tamilcharacters_charactersets",
-      "community": 5,
+      "community": 4,
+      "community_name": "Menu.js",
       "norm_label": "charactersets"
     },
     {
@@ -741,6 +891,7 @@
       "_origin": "ast",
       "id": "src_game_engine",
       "community": 1,
+      "community_name": "engine.js",
       "norm_label": "engine.js"
     },
     {
@@ -751,6 +902,7 @@
       "_origin": "ast",
       "id": "src_game_engine_difficulty_presets",
       "community": 1,
+      "community_name": "engine.js",
       "norm_label": "difficulty_presets"
     },
     {
@@ -761,6 +913,7 @@
       "_origin": "ast",
       "id": "src_game_engine_states",
       "community": 1,
+      "community_name": "engine.js",
       "norm_label": "states"
     },
     {
@@ -771,6 +924,7 @@
       "_origin": "ast",
       "id": "src_game_engine_getholepositions",
       "community": 1,
+      "community_name": "engine.js",
       "norm_label": "getholepositions()"
     },
     {
@@ -781,6 +935,7 @@
       "_origin": "ast",
       "id": "src_game_engine_pickrandomcharacter",
       "community": 1,
+      "community_name": "engine.js",
       "norm_label": "pickrandomcharacter()"
     },
     {
@@ -791,6 +946,7 @@
       "_origin": "ast",
       "id": "src_game_engine_pickdistractors",
       "community": 1,
+      "community_name": "engine.js",
       "norm_label": "pickdistractors()"
     },
     {
@@ -801,6 +957,7 @@
       "_origin": "ast",
       "id": "src_game_engine_creategamestate",
       "community": 1,
+      "community_name": "engine.js",
       "norm_label": "creategamestate()"
     },
     {
@@ -811,6 +968,7 @@
       "_origin": "ast",
       "id": "src_game_engine_findemptyholes",
       "community": 1,
+      "community_name": "engine.js",
       "norm_label": "findemptyholes()"
     },
     {
@@ -821,6 +979,7 @@
       "_origin": "ast",
       "id": "src_game_engine_allmoleshidden",
       "community": 1,
+      "community_name": "engine.js",
       "norm_label": "allmoleshidden()"
     },
     {
@@ -831,6 +990,7 @@
       "_origin": "ast",
       "id": "src_game_engine_spawnbatch",
       "community": 1,
+      "community_name": "engine.js",
       "norm_label": "spawnbatch()"
     },
     {
@@ -841,6 +1001,7 @@
       "_origin": "ast",
       "id": "src_game_engine_easeoutcubic",
       "community": 1,
+      "community_name": "engine.js",
       "norm_label": "easeoutcubic()"
     },
     {
@@ -851,6 +1012,7 @@
       "_origin": "ast",
       "id": "src_game_engine_updatemole",
       "community": 1,
+      "community_name": "engine.js",
       "norm_label": "updatemole()"
     },
     {
@@ -861,6 +1023,7 @@
       "_origin": "ast",
       "id": "src_game_engine_updategamestate",
       "community": 1,
+      "community_name": "engine.js",
       "norm_label": "updategamestate()"
     },
     {
@@ -871,6 +1034,7 @@
       "_origin": "ast",
       "id": "src_game_engine_handleclick",
       "community": 1,
+      "community_name": "engine.js",
       "norm_label": "handleclick()"
     },
     {
@@ -881,6 +1045,7 @@
       "_origin": "ast",
       "id": "src_game_engine_test",
       "community": 1,
+      "community_name": "engine.js",
       "norm_label": "engine.test.js"
     },
     {
@@ -891,6 +1056,7 @@
       "_origin": "ast",
       "id": "src_game_engine_test_testcharacters",
       "community": 1,
+      "community_name": "engine.js",
       "norm_label": "testcharacters"
     },
     {
@@ -901,6 +1067,7 @@
       "_origin": "ast",
       "id": "src_game_engine_test_setupvisiblemole",
       "community": 1,
+      "community_name": "engine.js",
       "norm_label": "setupvisiblemole()"
     },
     {
@@ -910,7 +1077,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_index",
-      "community": 7,
+      "community": 4,
+      "community_name": "Menu.js",
       "norm_label": "index.js"
     },
     {
@@ -920,7 +1088,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_index_root",
-      "community": 7,
+      "community": 4,
+      "community_name": "Menu.js",
       "norm_label": "root"
     },
     {
@@ -931,7 +1100,679 @@
       "_origin": "ast",
       "id": "src_setuptests",
       "community": 8,
+      "community_name": "setupTests.js",
       "norm_label": "setuptests.js"
+    },
+    {
+      "label": "DESIGN.md",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "design",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "design.md"
+    },
+    {
+      "label": "Tamil Whack-a-Mole - Design System",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "design_tamil_whack_a_mole_design_system",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "tamil whack-a-mole - design system"
+    },
+    {
+      "label": "1. Design Philosophy",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "design_1_design_philosophy",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "1. design philosophy"
+    },
+    {
+      "label": "2. Color Palette",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "design_2_color_palette",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "2. color palette"
+    },
+    {
+      "label": "Primary Arcade Colors",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "design_primary_arcade_colors",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "primary arcade colors"
+    },
+    {
+      "label": "Semantic Colors",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "design_semantic_colors",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "semantic colors"
+    },
+    {
+      "label": "3. Typography",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "design_3_typography",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "3. typography"
+    },
+    {
+      "label": "Font Stack",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "design_font_stack",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "font stack"
+    },
+    {
+      "label": "Scale",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "design_scale",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "scale"
+    },
+    {
+      "label": "4. Spacing",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L57",
+      "_origin": "ast",
+      "id": "design_4_spacing",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "4. spacing"
+    },
+    {
+      "label": "5. Borders & Radii",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L71",
+      "_origin": "ast",
+      "id": "design_5_borders_radii",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "5. borders & radii"
+    },
+    {
+      "label": "6. Component Styles",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L83",
+      "_origin": "ast",
+      "id": "design_6_component_styles",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "6. component styles"
+    },
+    {
+      "label": "Buttons",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L85",
+      "_origin": "ast",
+      "id": "design_buttons",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "buttons"
+    },
+    {
+      "label": "Menu",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L93",
+      "_origin": "ast",
+      "id": "design_menu",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "menu"
+    },
+    {
+      "label": "HUD",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L105",
+      "_origin": "ast",
+      "id": "design_hud",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "hud"
+    },
+    {
+      "label": "Game Over",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L114",
+      "_origin": "ast",
+      "id": "design_game_over",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "game over"
+    },
+    {
+      "label": "Leaderboard",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L120",
+      "_origin": "ast",
+      "id": "design_leaderboard",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "leaderboard"
+    },
+    {
+      "label": "7. Canvas Design (Game Board)",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L127",
+      "_origin": "ast",
+      "id": "design_7_canvas_design_game_board",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "7. canvas design (game board)"
+    },
+    {
+      "label": "Background (drawBackground)",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L129",
+      "_origin": "ast",
+      "id": "design_background_drawbackground",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "background (drawbackground)"
+    },
+    {
+      "label": "Holes (drawHoleInteriors)",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L137",
+      "_origin": "ast",
+      "id": "design_holes_drawholeinteriors",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "holes (drawholeinteriors)"
+    },
+    {
+      "label": "Dirt Mounds (drawDirtMound)",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L142",
+      "_origin": "ast",
+      "id": "design_dirt_mounds_drawdirtmound",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "dirt mounds (drawdirtmound)"
+    },
+    {
+      "label": "Moles (drawMoleSprite)",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L149",
+      "_origin": "ast",
+      "id": "design_moles_drawmolesprite",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "moles (drawmolesprite)"
+    },
+    {
+      "label": "Effects",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L162",
+      "_origin": "ast",
+      "id": "design_effects",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "effects"
+    },
+    {
+      "label": "Pause Overlay",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L167",
+      "_origin": "ast",
+      "id": "design_pause_overlay",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "pause overlay"
+    },
+    {
+      "label": "8. Interaction States",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L173",
+      "_origin": "ast",
+      "id": "design_8_interaction_states",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "8. interaction states"
+    },
+    {
+      "label": "9. Accessibility",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L182",
+      "_origin": "ast",
+      "id": "design_9_accessibility",
+      "community": 6,
+      "community_name": "App.js",
+      "norm_label": "9. accessibility"
+    },
+    {
+      "label": "HANDOFF.md",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "handoff",
+      "community": 9,
+      "community_name": "Tamil Whack-a-Mole \u2014 Developer Handoff",
+      "norm_label": "handoff.md"
+    },
+    {
+      "label": "Tamil Whack-a-Mole \u2014 Developer Handoff",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "handoff_tamil_whack_a_mole_developer_handoff",
+      "community": 9,
+      "community_name": "Tamil Whack-a-Mole \u2014 Developer Handoff",
+      "norm_label": "tamil whack-a-mole \u2014 developer handoff"
+    },
+    {
+      "label": "Overview",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "handoff_overview",
+      "community": 9,
+      "community_name": "Tamil Whack-a-Mole \u2014 Developer Handoff",
+      "norm_label": "overview"
+    },
+    {
+      "label": "Tech Stack",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "handoff_tech_stack",
+      "community": 9,
+      "community_name": "Tamil Whack-a-Mole \u2014 Developer Handoff",
+      "norm_label": "tech stack"
+    },
+    {
+      "label": "Visual Design",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "handoff_visual_design",
+      "community": 9,
+      "community_name": "Tamil Whack-a-Mole \u2014 Developer Handoff",
+      "norm_label": "visual design"
+    },
+    {
+      "label": "Project Structure",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "handoff_project_structure",
+      "community": 9,
+      "community_name": "Tamil Whack-a-Mole \u2014 Developer Handoff",
+      "norm_label": "project structure"
+    },
+    {
+      "label": "How to Run",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L62",
+      "_origin": "ast",
+      "id": "handoff_how_to_run",
+      "community": 9,
+      "community_name": "Tamil Whack-a-Mole \u2014 Developer Handoff",
+      "norm_label": "how to run"
+    },
+    {
+      "label": "Architecture",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L71",
+      "_origin": "ast",
+      "id": "handoff_architecture",
+      "community": 10,
+      "community_name": "Architecture",
+      "norm_label": "architecture"
+    },
+    {
+      "label": "Screen Flow (App.js)",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L73",
+      "_origin": "ast",
+      "id": "handoff_screen_flow_app_js",
+      "community": 10,
+      "community_name": "Architecture",
+      "norm_label": "screen flow (app.js)"
+    },
+    {
+      "label": "Menu (Menu.js)",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L87",
+      "_origin": "ast",
+      "id": "handoff_menu_menu_js",
+      "community": 10,
+      "community_name": "Architecture",
+      "norm_label": "menu (menu.js)"
+    },
+    {
+      "label": "Game Engine (engine.js) \u2014 Pure Logic, No React",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L93",
+      "_origin": "ast",
+      "id": "handoff_game_engine_engine_js_pure_logic_no_react",
+      "community": 10,
+      "community_name": "Architecture",
+      "norm_label": "game engine (engine.js) \u2014 pure logic, no react"
+    },
+    {
+      "label": "Difficulty Presets",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L146",
+      "_origin": "ast",
+      "id": "handoff_difficulty_presets",
+      "community": 10,
+      "community_name": "Architecture",
+      "norm_label": "difficulty presets"
+    },
+    {
+      "label": "Game Loop (Game.js)",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L156",
+      "_origin": "ast",
+      "id": "handoff_game_loop_game_js",
+      "community": 10,
+      "community_name": "Architecture",
+      "norm_label": "game loop (game.js)"
+    },
+    {
+      "label": "Hit Detection",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L174",
+      "_origin": "ast",
+      "id": "handoff_hit_detection",
+      "community": 10,
+      "community_name": "Architecture",
+      "norm_label": "hit detection"
+    },
+    {
+      "label": "Mole Spawning",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L187",
+      "_origin": "ast",
+      "id": "handoff_mole_spawning",
+      "community": 10,
+      "community_name": "Architecture",
+      "norm_label": "mole spawning"
+    },
+    {
+      "label": "Canvas Coordinates",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L193",
+      "_origin": "ast",
+      "id": "handoff_canvas_coordinates",
+      "community": 10,
+      "community_name": "Architecture",
+      "norm_label": "canvas coordinates"
+    },
+    {
+      "label": "Grid Layout Constants",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L213",
+      "_origin": "ast",
+      "id": "handoff_grid_layout_constants",
+      "community": 9,
+      "community_name": "Tamil Whack-a-Mole \u2014 Developer Handoff",
+      "norm_label": "grid layout constants"
+    },
+    {
+      "label": "Game Mechanics",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L230",
+      "_origin": "ast",
+      "id": "handoff_game_mechanics",
+      "community": 9,
+      "community_name": "Tamil Whack-a-Mole \u2014 Developer Handoff",
+      "norm_label": "game mechanics"
+    },
+    {
+      "label": "Tamil Character Data (tamilCharacters.js)",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L246",
+      "_origin": "ast",
+      "id": "handoff_tamil_character_data_tamilcharacters_js",
+      "community": 9,
+      "community_name": "Tamil Whack-a-Mole \u2014 Developer Handoff",
+      "norm_label": "tamil character data (tamilcharacters.js)"
+    },
+    {
+      "label": "Extension Points",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L261",
+      "_origin": "ast",
+      "id": "handoff_extension_points",
+      "community": 9,
+      "community_name": "Tamil Whack-a-Mole \u2014 Developer Handoff",
+      "norm_label": "extension points"
+    },
+    {
+      "label": "Adding Mole Images",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L263",
+      "_origin": "ast",
+      "id": "handoff_adding_mole_images",
+      "community": 9,
+      "community_name": "Tamil Whack-a-Mole \u2014 Developer Handoff",
+      "norm_label": "adding mole images"
+    },
+    {
+      "label": "Audio System",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L280",
+      "_origin": "ast",
+      "id": "handoff_audio_system",
+      "community": 9,
+      "community_name": "Tamil Whack-a-Mole \u2014 Developer Handoff",
+      "norm_label": "audio system"
+    },
+    {
+      "label": "Adding More Characters",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L307",
+      "_origin": "ast",
+      "id": "handoff_adding_more_characters",
+      "community": 9,
+      "community_name": "Tamil Whack-a-Mole \u2014 Developer Handoff",
+      "norm_label": "adding more characters"
+    },
+    {
+      "label": "Adding High Scores",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L314",
+      "_origin": "ast",
+      "id": "handoff_adding_high_scores",
+      "community": 9,
+      "community_name": "Tamil Whack-a-Mole \u2014 Developer Handoff",
+      "norm_label": "adding high scores"
+    },
+    {
+      "label": "Known Issues",
+      "file_type": "document",
+      "source_file": "HANDOFF.md",
+      "source_location": "L322",
+      "_origin": "ast",
+      "id": "handoff_known_issues",
+      "community": 9,
+      "community_name": "Tamil Whack-a-Mole \u2014 Developer Handoff",
+      "norm_label": "known issues"
+    },
+    {
+      "label": "HANDOFF_CONTEXT.md",
+      "file_type": "document",
+      "source_file": "HANDOFF_CONTEXT.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "handoff_context",
+      "community": 12,
+      "community_name": "HANDOFF_CONTEXT.md",
+      "norm_label": "handoff_context.md"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme",
+      "community": 11,
+      "community_name": "Tamil Whack-a-Mole",
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "Tamil Whack-a-Mole",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme_tamil_whack_a_mole",
+      "community": 11,
+      "community_name": "Tamil Whack-a-Mole",
+      "norm_label": "tamil whack-a-mole"
+    },
+    {
+      "label": "Getting Started",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "readme_getting_started",
+      "community": 11,
+      "community_name": "Tamil Whack-a-Mole",
+      "norm_label": "getting started"
+    },
+    {
+      "label": "How to Play",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "readme_how_to_play",
+      "community": 11,
+      "community_name": "Tamil Whack-a-Mole",
+      "norm_label": "how to play"
+    },
+    {
+      "label": "Features",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "readme_features",
+      "community": 11,
+      "community_name": "Tamil Whack-a-Mole",
+      "norm_label": "features"
+    },
+    {
+      "label": "Tech Stack",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "readme_tech_stack",
+      "community": 11,
+      "community_name": "Tamil Whack-a-Mole",
+      "norm_label": "tech stack"
+    },
+    {
+      "label": "Project Structure",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "readme_project_structure",
+      "community": 11,
+      "community_name": "Tamil Whack-a-Mole",
+      "norm_label": "project structure"
+    },
+    {
+      "label": "Adding Audio",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "readme_adding_audio",
+      "community": 11,
+      "community_name": "Tamil Whack-a-Mole",
+      "norm_label": "adding audio"
+    },
+    {
+      "label": "License",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L54",
+      "_origin": "ast",
+      "id": "readme_license",
+      "community": 11,
+      "community_name": "Tamil Whack-a-Mole",
+      "norm_label": "license"
     }
   ],
   "links": [
@@ -1555,7 +2396,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L28",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_components_game",
+      "target": "src_components_game_colors",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Game.js",
+      "source_location": "L136",
       "weight": 1.0,
       "source": "src_components_game",
       "target": "src_components_game_drawbackground",
@@ -1565,17 +2416,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L110",
+      "source_location": "L214",
       "weight": 1.0,
       "source": "src_components_game",
-      "target": "src_components_game_drawhiteffects",
+      "target": "src_components_game_drawdirtmound",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L53",
+      "source_location": "L267",
       "weight": 1.0,
       "source": "src_components_game",
       "target": "src_components_game_drawholeinteriors",
@@ -1585,7 +2436,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L67",
+      "source_location": "L284",
       "weight": 1.0,
       "source": "src_components_game",
       "target": "src_components_game_drawholerims",
@@ -1595,17 +2446,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L76",
+      "source_location": "L301",
       "weight": 1.0,
       "source": "src_components_game",
-      "target": "src_components_game_drawmolebody",
+      "target": "src_components_game_drawmolesprite",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L142",
+      "source_location": "L579",
       "weight": 1.0,
       "source": "src_components_game",
       "target": "src_components_game_drawpauseoverlay",
@@ -1615,7 +2466,37 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L126",
+      "source_location": "L467",
+      "weight": 1.0,
+      "source": "src_components_game",
+      "target": "src_components_game_drawwhackeffect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Game.js",
+      "source_location": "L778",
+      "weight": 1.0,
+      "source": "src_components_game",
+      "target": "src_components_game_drawwhackeffects",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Game.js",
+      "source_location": "L539",
+      "weight": 1.0,
+      "source": "src_components_game",
+      "target": "src_components_game_drawwronghiteffect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Game.js",
+      "source_location": "L782",
       "weight": 1.0,
       "source": "src_components_game",
       "target": "src_components_game_drawwronghiteffects",
@@ -1625,7 +2506,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L157",
+      "source_location": "L594",
       "weight": 1.0,
       "source": "src_components_game",
       "target": "src_components_game_game",
@@ -1635,7 +2516,37 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L17",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "src_components_game",
+      "target": "src_components_game_getaudiocontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Game.js",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "src_components_game",
+      "target": "src_components_game_initaudiosystem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Game.js",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "src_components_game",
+      "target": "src_components_game_playfallbacktone",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Game.js",
+      "source_location": "L106",
       "weight": 1.0,
       "source": "src_components_game",
       "target": "src_components_game_playplaceholderaudio",
@@ -1723,7 +2634,29 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L276",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "src_components_game_playfallbacktone",
+      "target": "src_components_game_getaudiocontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Game.js",
+      "source_location": "L123",
+      "weight": 1.0,
+      "source": "src_components_game_playplaceholderaudio",
+      "target": "src_components_game_playfallbacktone",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Game.js",
+      "source_location": "L724",
       "weight": 1.0,
       "source": "src_components_game_game",
       "target": "src_components_game_playplaceholderaudio",
@@ -1734,7 +2667,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L199",
+      "source_location": "L637",
       "weight": 1.0,
       "source": "src_components_game_game",
       "target": "src_components_game_drawbackground",
@@ -1745,7 +2678,18 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L200",
+      "source_location": "L638",
+      "weight": 1.0,
+      "source": "src_components_game_game",
+      "target": "src_components_game_drawdirtmound",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Game.js",
+      "source_location": "L639",
       "weight": 1.0,
       "source": "src_components_game_game",
       "target": "src_components_game_drawholeinteriors",
@@ -1756,7 +2700,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L204",
+      "source_location": "L643",
       "weight": 1.0,
       "source": "src_components_game_game",
       "target": "src_components_game_drawholerims",
@@ -1767,10 +2711,10 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L202",
+      "source_location": "L641",
       "weight": 1.0,
       "source": "src_components_game_game",
-      "target": "src_components_game_drawmolebody",
+      "target": "src_components_game_drawmolesprite",
       "confidence_score": 1.0
     },
     {
@@ -1778,10 +2722,10 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L205",
+      "source_location": "L779",
       "weight": 1.0,
-      "source": "src_components_game_game",
-      "target": "src_components_game_drawhiteffects",
+      "source": "src_components_game_drawwhackeffects",
+      "target": "src_components_game_drawwhackeffect",
       "confidence_score": 1.0
     },
     {
@@ -1789,10 +2733,10 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L206",
+      "source_location": "L783",
       "weight": 1.0,
-      "source": "src_components_game_game",
-      "target": "src_components_game_drawwronghiteffects",
+      "source": "src_components_game_drawwronghiteffects",
+      "target": "src_components_game_drawwronghiteffect",
       "confidence_score": 1.0
     },
     {
@@ -1800,7 +2744,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L207",
+      "source_location": "L646",
       "weight": 1.0,
       "source": "src_components_game_game",
       "target": "src_components_game_drawpauseoverlay",
@@ -1811,7 +2755,29 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L244",
+      "source_location": "L644",
+      "weight": 1.0,
+      "source": "src_components_game_game",
+      "target": "src_components_game_drawwhackeffects",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Game.js",
+      "source_location": "L645",
+      "weight": 1.0,
+      "source": "src_components_game_game",
+      "target": "src_components_game_drawwronghiteffects",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Game.js",
+      "source_location": "L692",
       "weight": 1.0,
       "source": "src_components_game_game",
       "target": "src_game_engine_creategamestate",
@@ -1822,7 +2788,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L274",
+      "source_location": "L722",
       "weight": 1.0,
       "source": "src_components_game_game",
       "target": "src_game_engine_handleclick",
@@ -1833,7 +2799,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Game.js",
-      "source_location": "L212",
+      "source_location": "L651",
       "weight": 1.0,
       "source": "src_components_game_game",
       "target": "src_game_engine_updategamestate",
@@ -2120,7 +3086,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/game/engine.js",
-      "source_location": "L254",
+      "source_location": "L255",
       "weight": 1.0,
       "source": "src_game_engine_handleclick",
       "target": "src_game_engine_pickrandomcharacter",
@@ -2265,8 +3231,578 @@
       "source": "src_index",
       "target": "src_index_root",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "design",
+      "target": "design_tamil_whack_a_mole_design_system",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "design_tamil_whack_a_mole_design_system",
+      "target": "design_1_design_philosophy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "design_tamil_whack_a_mole_design_system",
+      "target": "design_2_color_palette",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "design_tamil_whack_a_mole_design_system",
+      "target": "design_3_typography",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "design_tamil_whack_a_mole_design_system",
+      "target": "design_4_spacing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "design_tamil_whack_a_mole_design_system",
+      "target": "design_5_borders_radii",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L83",
+      "weight": 1.0,
+      "source": "design_tamil_whack_a_mole_design_system",
+      "target": "design_6_component_styles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L127",
+      "weight": 1.0,
+      "source": "design_tamil_whack_a_mole_design_system",
+      "target": "design_7_canvas_design_game_board",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L173",
+      "weight": 1.0,
+      "source": "design_tamil_whack_a_mole_design_system",
+      "target": "design_8_interaction_states",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L182",
+      "weight": 1.0,
+      "source": "design_tamil_whack_a_mole_design_system",
+      "target": "design_9_accessibility",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "design_2_color_palette",
+      "target": "design_primary_arcade_colors",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "design_2_color_palette",
+      "target": "design_semantic_colors",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "design_3_typography",
+      "target": "design_font_stack",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "design_3_typography",
+      "target": "design_scale",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L85",
+      "weight": 1.0,
+      "source": "design_6_component_styles",
+      "target": "design_buttons",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L114",
+      "weight": 1.0,
+      "source": "design_6_component_styles",
+      "target": "design_game_over",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L105",
+      "weight": 1.0,
+      "source": "design_6_component_styles",
+      "target": "design_hud",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L120",
+      "weight": 1.0,
+      "source": "design_6_component_styles",
+      "target": "design_leaderboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "design_6_component_styles",
+      "target": "design_menu",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L129",
+      "weight": 1.0,
+      "source": "design_7_canvas_design_game_board",
+      "target": "design_background_drawbackground",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L142",
+      "weight": 1.0,
+      "source": "design_7_canvas_design_game_board",
+      "target": "design_dirt_mounds_drawdirtmound",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L162",
+      "weight": 1.0,
+      "source": "design_7_canvas_design_game_board",
+      "target": "design_effects",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L137",
+      "weight": 1.0,
+      "source": "design_7_canvas_design_game_board",
+      "target": "design_holes_drawholeinteriors",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L149",
+      "weight": 1.0,
+      "source": "design_7_canvas_design_game_board",
+      "target": "design_moles_drawmolesprite",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L167",
+      "weight": 1.0,
+      "source": "design_7_canvas_design_game_board",
+      "target": "design_pause_overlay",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "handoff",
+      "target": "handoff_tamil_whack_a_mole_developer_handoff",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "handoff_tamil_whack_a_mole_developer_handoff",
+      "target": "handoff_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L261",
+      "weight": 1.0,
+      "source": "handoff_tamil_whack_a_mole_developer_handoff",
+      "target": "handoff_extension_points",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L230",
+      "weight": 1.0,
+      "source": "handoff_tamil_whack_a_mole_developer_handoff",
+      "target": "handoff_game_mechanics",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L213",
+      "weight": 1.0,
+      "source": "handoff_tamil_whack_a_mole_developer_handoff",
+      "target": "handoff_grid_layout_constants",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "handoff_tamil_whack_a_mole_developer_handoff",
+      "target": "handoff_how_to_run",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L322",
+      "weight": 1.0,
+      "source": "handoff_tamil_whack_a_mole_developer_handoff",
+      "target": "handoff_known_issues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "handoff_tamil_whack_a_mole_developer_handoff",
+      "target": "handoff_overview",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "handoff_tamil_whack_a_mole_developer_handoff",
+      "target": "handoff_project_structure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L246",
+      "weight": 1.0,
+      "source": "handoff_tamil_whack_a_mole_developer_handoff",
+      "target": "handoff_tamil_character_data_tamilcharacters_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "handoff_tamil_whack_a_mole_developer_handoff",
+      "target": "handoff_tech_stack",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "handoff_tamil_whack_a_mole_developer_handoff",
+      "target": "handoff_visual_design",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L193",
+      "weight": 1.0,
+      "source": "handoff_architecture",
+      "target": "handoff_canvas_coordinates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L146",
+      "weight": 1.0,
+      "source": "handoff_architecture",
+      "target": "handoff_difficulty_presets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "handoff_architecture",
+      "target": "handoff_game_engine_engine_js_pure_logic_no_react",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L156",
+      "weight": 1.0,
+      "source": "handoff_architecture",
+      "target": "handoff_game_loop_game_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L174",
+      "weight": 1.0,
+      "source": "handoff_architecture",
+      "target": "handoff_hit_detection",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "handoff_architecture",
+      "target": "handoff_menu_menu_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L187",
+      "weight": 1.0,
+      "source": "handoff_architecture",
+      "target": "handoff_mole_spawning",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "handoff_architecture",
+      "target": "handoff_screen_flow_app_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L314",
+      "weight": 1.0,
+      "source": "handoff_extension_points",
+      "target": "handoff_adding_high_scores",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L263",
+      "weight": 1.0,
+      "source": "handoff_extension_points",
+      "target": "handoff_adding_mole_images",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L307",
+      "weight": 1.0,
+      "source": "handoff_extension_points",
+      "target": "handoff_adding_more_characters",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOFF.md",
+      "source_location": "L280",
+      "weight": 1.0,
+      "source": "handoff_extension_points",
+      "target": "handoff_audio_system",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "readme_tamil_whack_a_mole",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "readme_tamil_whack_a_mole",
+      "target": "readme_adding_audio",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "readme_tamil_whack_a_mole",
+      "target": "readme_features",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "readme_tamil_whack_a_mole",
+      "target": "readme_getting_started",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "readme_tamil_whack_a_mole",
+      "target": "readme_how_to_play",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "readme_tamil_whack_a_mole",
+      "target": "readme_license",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "readme_tamil_whack_a_mole",
+      "target": "readme_project_structure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "readme_tamil_whack_a_mole",
+      "target": "readme_tech_stack",
+      "confidence_score": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "3d1444b3fc603ee5e0fc95fcd52047466e0f75c0"
+  "built_at_commit": "70928b04dc0f18fab98bfac76749205da9424da1"
 }

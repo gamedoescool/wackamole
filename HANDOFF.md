@@ -17,6 +17,29 @@ A whack-a-mole game designed to help people learn the Tamil alphabet. Players ar
 
 Zero third-party game/animation libraries. The entire game engine is ~300 lines of vanilla JS.
 
+## Visual Design
+
+Retro arcade Whac-A-Mole aesthetic with the classic palette:
+
+| Color | Hex | Usage |
+|---|---|---|
+| Canary Yellow | `#FFD700` | Title text, score values, rivets, Tamil labels |
+| Cherry Red | `#E31B23` | Selected states, labels, hit effects |
+| Grass Green | `#4CAF50` | Playfield background |
+| Clay Brown | `#8B4513` | Mole bodies, dirt mounds |
+| Cobalt Blue | `#1E3A8A` | Cabinet border, panel borders |
+| Neon Purple | `#7C3AED` | Whack starburst effect |
+| Dark Navy | `#0F172A` | Body background, hole interiors |
+
+Canvas sprites are fully procedural (no image assets):
+- `drawBackground` - grass field with stripe texture, cobalt cabinet border, yellow rivets, banner
+- `drawDirtMound` - double-layer clay mound with texture dots and grass tufts
+- `drawMoleSprite` - cartoon mole with egg body, ears, cross-eyed pupils, pink nose, whiskers, golden Tamil label
+- `drawWhackEffect` - purple starburst, yellow lightning bolts, red +10, romanized name float-up
+- `drawWrongHitEffect` - red X mark, brown dust puffs
+
+DESIGN.md contains the full design system specification.
+
 ## Project Structure
 
 ```
@@ -74,7 +97,7 @@ The engine is a set of pure functions that mutate a plain state object. No DOM, 
 **Key exports:**
 - `createGameState(characters, difficulty)` — factory, returns fresh state with difficulty-based timings
 - `updateGameState(state, dt)` — advances timer, spawns moles, updates animations
-- `handleClick(state, x, y)` — hit detection, returns character or null
+- `handleClick(state, x, y, padding)` — hit detection, returns character or null (padding defaults to 0)
 - Constants: `HOLE_WIDTH`, `HOLE_HEIGHT`, `MOLE_WIDTH`, `MOLE_HEIGHT`, `HOLE_ROWS`, `HOLE_COLS`, `STATES`
 - `DIFFICULTY_PRESETS` — timing configurations for easy/medium/hard
 
@@ -151,10 +174,12 @@ requestAnimationFrame callback:
 ### Hit Detection
 
 ```js
-handleClick(state, x, y) → character | null
+handleClick(state, x, y, padding = 0) → character | null
 ```
 - Iterates all 16 moles
-- Checks bounding box: `[mole.x - MOLE_WIDTH/2, mole.riseY]` to `[mole.x + MOLE_WIDTH/2, mole.y]`
+- Checks bounding box: `[mole.x - MOLE_WIDTH/2 - padding, mole.riseY - padding]` to `[mole.x + MOLE_WIDTH/2 + padding, mole.y + padding]`
+- Touch events pass dynamic padding to expand hit targets to 44px minimum on mobile
+- Mouse events pass no padding (pixel-precise on desktop)
 - If target hit: +10 score, new target picked, green "+10" effect, **all active moles fall**
 - If wrong hit: -5 score (min 0), red "X" effect, only that mole falls
 - Returns the hit character (for audio) or null
@@ -174,6 +199,16 @@ const scaleY = CANVAS_HEIGHT / rect.height;
 const x = (e.clientX - rect.left) * scaleX;
 const y = (e.clientY - rect.top) * scaleY;
 ```
+
+**Mobile touch handling:** Touch events calculate a dynamic padding to expand hit targets:
+```js
+const TOUCH_TARGET_MIN = 44; // Apple HIG minimum
+const displayMoleWidth = MOLE_WIDTH * (rect.width / CANVAS_WIDTH);
+const touchPadding = displayMoleWidth < TOUCH_TARGET_MIN
+  ? Math.ceil(((TOUCH_TARGET_MIN - displayMoleWidth) / 2) * (CANVAS_WIDTH / rect.width))
+  : 0;
+```
+This ensures moles are tappable on small screens without changing the visual appearance or desktop behavior.
 
 ## Grid Layout Constants
 
@@ -242,15 +277,32 @@ ctx.drawImage(img, moleX - MOLE_WIDTH/2, visibleTop, MOLE_WIDTH, visibleHeight);
 
 **Important:** The mole body is clipped to `groundY - riseY` height. Only the portion above the hole line is visible.
 
-### Adding Audio
+### Audio System
 
-1. Place audio files in `public/audio/` (filenames match `character.audio` field)
-2. `playPlaceholderAudio()` in `Game.js` already handles playback:
-   ```js
-   const audio = new Audio(`audio/${character.audio}`);
-   audio.play().catch(() => {});
-   ```
-3. File naming convention: `a.mp3`, `ka.mp3`, `kaa.mp3`, etc.
+Audio uses a progressive enhancement approach with automatic fallback:
+
+```js
+// On module load, initAudioSystem() sets up voiceschanged listener
+// to detect Tamil voices asynchronously (they load async on many browsers)
+
+// playPlaceholderAudio(character):
+// 1. If Tamil voice detected → Web Speech API (SpeechSynthesisUtterance, lang='ta-IN')
+// 2. If no Tamil voice → AudioContext fallback (C5→E5 sine wave chime)
+// 3. utterance.onerror catches silent failures (common on Windows)
+```
+
+**Platform support:**
+- macOS/iOS: Tamil pronunciation via Web Speech API
+- Windows: Pleasant two-tone chime via AudioContext (no MP3 downloads needed)
+- Android: Tamil pronunciation via Web Speech API (Google TTS)
+
+**Visual feedback:** All correct hits show the romanized character name floating up alongside the "+10" effect. This provides feedback even when audio is unavailable.
+
+**Design decisions:**
+- No pre-generated MP3 files — keeps the app lightweight (zero audio asset downloads)
+- AudioContext is lazy-initialized (created on first use, not on page load)
+- AudioContext uses `webkitAudioContext` fallback for Safari compatibility
+- `ctx.resume()` called if AudioContext is suspended (autoplay policy compliance)
 
 ### Adding More Characters
 
@@ -269,18 +321,22 @@ Scores are persisted in `localStorage` under key `tamilWamScores` (top 10). The 
 
 ## Known Issues
 
-1. **Audio placeholder** — `public/audio/` directory doesn't exist. `playPlaceholderAudio()` silently fails. Add real audio files to enable pronunciation feedback.
+1. ~~**UI does not scale on mobile**~~ — Fixed. Touch handler calculates dynamic padding to expand hit targets to 44px minimum on small screens. CSS media query reduces container padding on mobile to maximize canvas display width. Mouse clicks remain pixel-precise on desktop.
 
-2. ~~**HTML metadata still says CRA defaults**~~ — Fixed. Title and description were already customized; removed broken `logo192.png` reference from `index.html`.
+2. ~~**Audio does not work on Windows**~~ — Fixed. Replaced bare Web Speech API with progressive enhancement system: voiceschanged listener detects Tamil voices, AudioContext fallback generates a pleasant C5-E5 chime on platforms without Tamil TTS, utterance.onerror catches silent failures. Zero audio asset downloads.
 
-3. ~~**Unused CRA boilerplate**~~ — Resolved. `src/logo.svg`, `src/reportWebVitals.js`, and `src/index.css` were already removed.
+3. ~~**Audio placeholder**~~ — Fixed. Replaced broken mp3 file loading with Web Speech API. Works on macOS/iOS; Windows has issues (see #2).
 
-4. ~~**No score persistence**~~ — Fixed. Scores are saved to `localStorage` (top 10 leaderboard) and displayed on the game-over screen.
+4. ~~**HTML metadata still says CRA defaults**~~ — Fixed.
 
-5. ~~**Hole re-drawing redundancy**~~ — Fixed. Drawing split into `drawHoleInteriors()` (behind moles) and `drawHoleRims()` (on top of moles) with a single pass — no more redundant ellipses.
+5. ~~**Unused CRA boilerplate**~~ — Resolved.
 
-6. ~~**No mobile touch events**~~ — Fixed. `onTouchStart` handler added to the canvas with `touch-action: none` CSS to prevent browser gesture interference.
+6. ~~**No score persistence**~~ — Fixed. Scores saved to localStorage.
 
-7. ~~**Single smoke test**~~ — Fixed. Added `engine.test.js` with comprehensive tests for `createGameState`, `updateGameState`, `handleClick`, and all game constants.
+7. ~~**Hole re-drawing redundancy**~~ — Fixed.
 
-8. ~~**`lastHit` prop passed to HUD but not rendered**~~ — Was never implemented. Removed stale `lastHit`/`lastHitTimer` references from HANDOFF.md state shape docs.
+8. ~~**No mobile touch events**~~ — Fixed. Touch handler added, but UI scaling still broken (see #1).
+
+9. ~~**Single smoke test**~~ — Fixed. Added `engine.test.js`.
+
+10. ~~**`lastHit` prop passed to HUD but not rendered**~~ — Removed stale references.

@@ -382,3 +382,12 @@ body {
 .leaderboard-difficulty {
   text-transform: capitalize;
 }
+
+@media (max-width: 600px) {
+  .app {
+    padding: 8px;
+  }
+  .game-container {
+    gap: 6px;
+  }
+}

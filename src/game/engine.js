@@ -228,7 +228,7 @@ export function updateGameState(state, dt) {
   return state;
 }
 
-export function handleClick(state, x, y) {
+export function handleClick(state, x, y, padding = 0) {
   if (state.gameOver) return null;
   if (state.paused) return null;
 
@@ -236,10 +236,10 @@ export function handleClick(state, x, y) {
     const mole = state.moles[i];
     if (mole.state !== STATES.VISIBLE && mole.state !== STATES.RISING) continue;
 
-    const moleLeft = mole.x - MOLE_WIDTH / 2;
-    const moleTop = mole.riseY;
-    const moleRight = mole.x + MOLE_WIDTH / 2;
-    const moleBottom = mole.y;
+    const moleLeft = mole.x - MOLE_WIDTH / 2 - padding;
+    const moleTop = mole.riseY - padding;
+    const moleRight = mole.x + MOLE_WIDTH / 2 + padding;
+    const moleBottom = mole.y + padding;
 
     if (x >= moleLeft && x <= moleRight && y >= moleTop && y <= moleBottom) {
       const wasTarget = mole.isTarget;
@@ -250,6 +250,7 @@ export function handleClick(state, x, y) {
           x: mole.x,
           y: mole.riseY - 10,
           timer: 0,
+          romanized: mole.character.romanized,
         });
         state.targetCharacter = pickRandomCharacter(state.characters);
         state.moles.forEach((m) => {

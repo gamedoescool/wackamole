@@ -31,32 +31,105 @@ const COLORS = {
   darkNavy: '#0F172A',
 };
 
-function playPlaceholderAudio(character) {
-  if (!character || !character.label) return;
-  try {
-    const synth = window.speechSynthesis;
-    if (!synth) return;
+// --- Audio System ---
+let audioContext = null;
+let tamilVoiceAvailable = null; // null = not checked yet
 
-    // Cancel any pending speech to avoid queue buildup
-    synth.cancel();
+function initAudioSystem() {
+  const synth = window.speechSynthesis;
+  if (!synth) {
+    tamilVoiceAvailable = false;
+    return;
+  }
 
-    const utterance = new SpeechSynthesisUtterance(character.label);
-    utterance.lang = 'ta-IN';
-    utterance.rate = 0.8;
-    utterance.pitch = 1;
-    utterance.volume = 1;
-
-    // Try to find a Tamil voice if available
+  function checkVoices() {
     const voices = synth.getVoices();
-    const tamilVoice = voices.find(v => v.lang.startsWith('ta'));
-    if (tamilVoice) {
-      utterance.voice = tamilVoice;
+    if (voices.length > 0) {
+      tamilVoiceAvailable = voices.some(v => v.lang.startsWith('ta'));
+    }
+  }
+
+  // Check immediately (works if voices are already loaded)
+  checkVoices();
+
+  // Listen for async voice loading
+  synth.addEventListener('voiceschanged', checkVoices);
+}
+
+// Initialize on module load
+initAudioSystem();
+
+function getAudioContext() {
+  if (!audioContext) {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  return audioContext;
+}
+
+function playFallbackTone() {
+  try {
+    const ctx = getAudioContext();
+    if (ctx.state === 'suspended') {
+      ctx.resume();
     }
 
-    synth.speak(utterance);
+    const now = ctx.currentTime;
+
+    // First note: C5 (523 Hz)
+    const osc1 = ctx.createOscillator();
+    const gain1 = ctx.createGain();
+    osc1.connect(gain1);
+    gain1.connect(ctx.destination);
+    osc1.type = 'sine';
+    osc1.frequency.value = 523;
+    gain1.gain.setValueAtTime(0.25, now);
+    gain1.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+    osc1.start(now);
+    osc1.stop(now + 0.15);
+
+    // Second note: E5 (659 Hz)
+    const osc2 = ctx.createOscillator();
+    const gain2 = ctx.createGain();
+    osc2.connect(gain2);
+    gain2.connect(ctx.destination);
+    osc2.type = 'sine';
+    osc2.frequency.value = 659;
+    gain2.gain.setValueAtTime(0.2, now + 0.1);
+    gain2.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+    osc2.start(now + 0.1);
+    osc2.stop(now + 0.3);
   } catch (e) {
-    // Speech synthesis not available
+    // AudioContext not available - silent fallback
   }
+}
+
+function playPlaceholderAudio(character) {
+  if (!character || !character.label) return;
+
+  // Try Web Speech API if Tamil voice is available
+  if (tamilVoiceAvailable === true) {
+    try {
+      const synth = window.speechSynthesis;
+      synth.cancel();
+      const utterance = new SpeechSynthesisUtterance(character.label);
+      utterance.lang = 'ta-IN';
+      utterance.rate = 0.8;
+      utterance.pitch = 1;
+      utterance.volume = 1;
+      const voices = synth.getVoices();
+      const tamilVoice = voices.find(v => v.lang.startsWith('ta'));
+      if (tamilVoice) utterance.voice = tamilVoice;
+      // If speech fails silently (common on Windows), fall back to tone
+      utterance.onerror = () => playFallbackTone();
+      synth.speak(utterance);
+      return;
+    } catch (e) {
+      // Fall through to fallback
+    }
+  }
+
+  // Fallback: play a pleasant tone
+  playFallbackTone();
 }
 
 // --- Sprite: Background (grass playfield, cabinet border, rivets) ---
@@ -447,6 +520,18 @@ function drawWhackEffect(ctx, effect) {
   ctx.strokeText('+10', 0, -10 * scale);
   ctx.fillText('+10', 0, -10 * scale);
 
+  // Romanized text (below +10)
+  if (effect.romanized) {
+    ctx.fillStyle = COLORS.cream;
+    ctx.font = 'bold 18px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.strokeStyle = COLORS.darkNavy;
+    ctx.lineWidth = 2;
+    ctx.strokeText(effect.romanized, 0, 10 * scale);
+    ctx.fillText(effect.romanized, 0, 10 * scale);
+  }
+
   ctx.restore();
 }
 
@@ -652,11 +737,17 @@ function Game({ characters, difficulty, onGameOver }) {
     const x = (touch.clientX - rect.left) * scaleX;
     const y = (touch.clientY - rect.top) * scaleY;
 
+    const TOUCH_TARGET_MIN = 44;
+    const displayMoleWidth = MOLE_WIDTH * (rect.width / CANVAS_WIDTH);
+    const touchPadding = displayMoleWidth < TOUCH_TARGET_MIN
+      ? Math.ceil(((TOUCH_TARGET_MIN - displayMoleWidth) / 2) * (CANVAS_WIDTH / rect.width))
+      : 0;
+
     const state = gameStateRef.current;
     if (!state) return;
     if (isPausedRef.current) return;
 
-    const hitChar = handleClick(state, x, y);
+    const hitChar = handleClick(state, x, y, touchPadding);
     if (hitChar) {
       playPlaceholderAudio(hitChar);
     }
