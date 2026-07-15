@@ -32,13 +32,30 @@ const COLORS = {
 };
 
 function playPlaceholderAudio(character) {
-  if (!character) return;
+  if (!character || !character.label) return;
   try {
-    const audio = new Audio(`audio/${character.audio}`);
-    audio.volume = 0.5;
-    audio.play().catch(() => {});
+    const synth = window.speechSynthesis;
+    if (!synth) return;
+
+    // Cancel any pending speech to avoid queue buildup
+    synth.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(character.label);
+    utterance.lang = 'ta-IN';
+    utterance.rate = 0.8;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    // Try to find a Tamil voice if available
+    const voices = synth.getVoices();
+    const tamilVoice = voices.find(v => v.lang.startsWith('ta'));
+    if (tamilVoice) {
+      utterance.voice = tamilVoice;
+    }
+
+    synth.speak(utterance);
   } catch (e) {
-    // Audio file not found - expected for placeholders
+    // Speech synthesis not available
   }
 }
 
