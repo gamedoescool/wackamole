@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/wackamole/static/css/main.bf9682ae.css",
+    "main.js": "/wackamole/static/js/main.89678611.js",
+    "index.html": "/wackamole/index.html",
+    "main.bf9682ae.css.map": "/wackamole/static/css/main.bf9682ae.css.map",
+    "main.89678611.js.map": "/wackamole/static/js/main.89678611.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bf9682ae.css",
+    "static/js/main.89678611.js"
+  ]
+}
