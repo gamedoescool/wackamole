@@ -407,9 +407,20 @@ body {
 }
 
 .gameover-star {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  clip-path: polygon(
+    50% 0%,
+    61% 34%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 71%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 34%
+  );
   transition: transform 0.2s ease;
 }
 
@@ -419,7 +430,7 @@ body {
 }
 
 .gameover-star.empty {
-  background: #E2E8F0;
+  background: #CBD5E1;
 }
 
 .gameover-cards {
