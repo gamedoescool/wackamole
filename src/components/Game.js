@@ -402,7 +402,7 @@ function drawMoleSprite(ctx, mole, hole) {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(mole.character.label, cx + 1, charY + 1);
-    ctx.fillStyle = COLORS.gold;
+    ctx.fillStyle = COLORS.cream;
     ctx.fillText(mole.character.label, cx, charY);
   }
 
