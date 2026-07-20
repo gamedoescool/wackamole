@@ -14,26 +14,31 @@ import HUD from './HUD';
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 720;
 
-// Retro arcade palette
+// Playful light palette
 const COLORS = {
-  canaryYellow: '#FFD700',
-  cherryRed: '#E31B23',
-  grassGreen: '#4CAF50',
-  grassDark: '#3D8B40',
-  clayBrown: '#8B4513',
-  clayLight: '#A0522D',
-  darkBrown: '#5D3A1A',
+  gold: '#F59E0B',
+  rose: '#F43F5E',
+  skyLight: '#E0F2FE',
+  skySoft: '#BAE6FD',
+  skyLighter: '#F0F9FF',
+  warmBrown: '#B45309',
+  warmBrownLight: '#D97706',
+  darkBrown: '#78350F',
   molePink: '#FF69B4',
-  cobaltBlue: '#1E3A8A',
-  cobaltLight: '#2444a8',
-  neonPurple: '#7C3AED',
+  molePinkLight: '#ff8ec4',
+  softBlue: '#BAE6FD',
+  softBlueBorder: '#7DD3FC',
+  violet: '#A78BFA',
+  violetDark: '#7C3AED',
   cream: '#FFF8DC',
-  darkNavy: '#0F172A',
+  slate700: '#334155',
+  slate800: '#1E293B',
+  emerald: '#34D399',
 };
 
 // --- Audio System ---
 let audioContext = null;
-let tamilVoiceAvailable = null; // null = not checked yet
+let tamilVoiceAvailable = null;
 
 function initAudioSystem() {
   const synth = window.speechSynthesis;
@@ -49,14 +54,10 @@ function initAudioSystem() {
     }
   }
 
-  // Check immediately (works if voices are already loaded)
   checkVoices();
-
-  // Listen for async voice loading
   synth.addEventListener('voiceschanged', checkVoices);
 }
 
-// Initialize on module load
 initAudioSystem();
 
 function getAudioContext() {
@@ -75,7 +76,6 @@ function playFallbackTone() {
 
     const now = ctx.currentTime;
 
-    // First note: C5 (523 Hz)
     const osc1 = ctx.createOscillator();
     const gain1 = ctx.createGain();
     osc1.connect(gain1);
@@ -87,7 +87,6 @@ function playFallbackTone() {
     osc1.start(now);
     osc1.stop(now + 0.15);
 
-    // Second note: E5 (659 Hz)
     const osc2 = ctx.createOscillator();
     const gain2 = ctx.createGain();
     osc2.connect(gain2);
@@ -99,14 +98,13 @@ function playFallbackTone() {
     osc2.start(now + 0.1);
     osc2.stop(now + 0.3);
   } catch (e) {
-    // AudioContext not available - silent fallback
+    // silent fallback
   }
 }
 
 function playPlaceholderAudio(character) {
   if (!character || !character.label) return;
 
-  // Try Web Speech API if Tamil voice is available
   if (tamilVoiceAvailable === true) {
     try {
       const synth = window.speechSynthesis;
@@ -119,117 +117,90 @@ function playPlaceholderAudio(character) {
       const voices = synth.getVoices();
       const tamilVoice = voices.find(v => v.lang.startsWith('ta'));
       if (tamilVoice) utterance.voice = tamilVoice;
-      // If speech fails silently (common on Windows), fall back to tone
       utterance.onerror = () => playFallbackTone();
       synth.speak(utterance);
       return;
     } catch (e) {
-      // Fall through to fallback
+      // fall through
     }
   }
 
-  // Fallback: play a pleasant tone
   playFallbackTone();
 }
 
-// --- Sprite: Background (grass playfield, cabinet border, rivets) ---
+// --- Background: Sky blue playfield with soft border ---
 function drawBackground(ctx) {
-  // Base grass green
-  ctx.fillStyle = COLORS.grassGreen;
+  // Sky blue base
+  const grad = ctx.createLinearGradient(0, 0, 0, CANVAS_HEIGHT);
+  grad.addColorStop(0, COLORS.skyLighter);
+  grad.addColorStop(0.5, COLORS.skyLight);
+  grad.addColorStop(1, COLORS.skySoft);
+  ctx.fillStyle = grad;
   ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-  // Grass texture - horizontal stripes
-  ctx.fillStyle = COLORS.grassDark;
-  for (let y = 0; y < CANVAS_HEIGHT; y += 12) {
-    ctx.fillRect(0, y, CANVAS_WIDTH, 2);
+  // Soft clouds / texture patches
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.35)';
+  for (let i = 0; i < 30; i++) {
+    const cx = (i * 193 + 71) % CANVAS_WIDTH;
+    const cy = (i * 137 + 43) % CANVAS_HEIGHT;
+    ctx.beginPath();
+    ctx.ellipse(cx, cy, 18 + (i % 12), 12 + (i % 8), Math.PI / 4, 0, Math.PI * 2);
+    ctx.fill();
   }
 
-  // Grass texture - scattered dots for organic feel
-  ctx.fillStyle = 'rgba(61, 139, 64, 0.5)';
-  for (let i = 0; i < 120; i++) {
+  // Scattered dots for texture
+  ctx.fillStyle = 'rgba(186, 230, 253, 0.5)';
+  for (let i = 0; i < 80; i++) {
     const gx = (i * 137 + 43) % CANVAS_WIDTH;
     const gy = (i * 193 + 71) % CANVAS_HEIGHT;
     ctx.beginPath();
-    ctx.arc(gx, gy, 2, 0, Math.PI * 2);
+    ctx.arc(gx, gy, 1.5, 0, Math.PI * 2);
     ctx.fill();
   }
 
-  // Cabinet border frame - cobalt blue
-  const borderW = 12;
-  ctx.fillStyle = COLORS.cobaltBlue;
-  // Top
+  // Soft border frame
+  const borderW = 10;
+  ctx.fillStyle = COLORS.softBlueBorder;
   ctx.fillRect(0, 0, CANVAS_WIDTH, borderW);
-  // Bottom
   ctx.fillRect(0, CANVAS_HEIGHT - borderW, CANVAS_WIDTH, borderW);
-  // Left
   ctx.fillRect(0, 0, borderW, CANVAS_HEIGHT);
-  // Right
   ctx.fillRect(CANVAS_WIDTH - borderW, 0, borderW, CANVAS_HEIGHT);
 
   // Inner border highlight
-  ctx.strokeStyle = COLORS.cobaltLight;
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
   ctx.lineWidth = 2;
-  ctx.strokeRect(borderW, borderW, CANVAS_WIDTH - borderW * 2, CANVAS_HEIGHT - borderW * 2);
+  ctx.strokeRect(borderW + 1, borderW + 1, CANVAS_WIDTH - (borderW + 1) * 2, CANVAS_HEIGHT - (borderW + 1) * 2);
 
-  // Decorative rivets at corners
-  const rivetPositions = [
-    [20, 20],
-    [CANVAS_WIDTH - 20, 20],
-    [20, CANVAS_HEIGHT - 20],
-    [CANVAS_WIDTH - 20, CANVAS_HEIGHT - 20],
-    [CANVAS_WIDTH / 2, 20],
-    [CANVAS_WIDTH / 2, CANVAS_HEIGHT - 20],
-    [20, CANVAS_HEIGHT / 2],
-    [CANVAS_WIDTH - 20, CANVAS_HEIGHT / 2],
-  ];
-  rivetPositions.forEach(([rx, ry]) => {
-    // Rivet shadow
-    ctx.fillStyle = COLORS.darkBrown;
-    ctx.beginPath();
-    ctx.arc(rx, ry, 5, 0, Math.PI * 2);
-    ctx.fill();
-    // Rivet body
-    ctx.fillStyle = COLORS.canaryYellow;
-    ctx.beginPath();
-    ctx.arc(rx, ry, 4, 0, Math.PI * 2);
-    ctx.fill();
-    // Rivet highlight
-    ctx.fillStyle = COLORS.cream;
-    ctx.beginPath();
-    ctx.arc(rx - 1, ry - 1, 1.5, 0, Math.PI * 2);
-    ctx.fill();
-  });
-
-  // Top banner text
-  ctx.fillStyle = COLORS.darkNavy;
-  ctx.fillRect(borderW, borderW, CANVAS_WIDTH - borderW * 2, 28);
-  ctx.fillStyle = COLORS.canaryYellow;
-  ctx.font = 'bold 16px sans-serif';
+  // Top banner
+  ctx.fillStyle = COLORS.slate800;
+  ctx.fillRect(borderW, borderW, CANVAS_WIDTH - borderW * 2, 26);
+  ctx.fillStyle = COLORS.gold;
+  ctx.font = 'bold 15px sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText('TAMIL WHACK-A-MOLE', CANVAS_WIDTH / 2, borderW + 14);
+  ctx.fillText('TAMIL WHACK-A-MOLE', CANVAS_WIDTH / 2, borderW + 13);
 }
 
-// --- Sprite: Dirt Mound (clay brown mound with texture and grass) ---
+// --- Dirt Mound ---
 function drawDirtMound(ctx, hole) {
   const hx = hole.x;
   const hy = hole.y;
   const moundW = HOLE_WIDTH / 2 + 18;
   const moundH = 22;
 
-  // Back mound (behind the hole) - darker
+  // Back mound
   ctx.fillStyle = COLORS.darkBrown;
   ctx.beginPath();
   ctx.ellipse(hx, hy - moundH + 4, moundW, moundH, 0, 0, Math.PI * 2);
   ctx.fill();
 
   // Main mound
-  ctx.fillStyle = COLORS.clayBrown;
+  ctx.fillStyle = COLORS.warmBrown;
   ctx.beginPath();
   ctx.ellipse(hx, hy - moundH + 6, moundW - 2, moundH - 2, 0, 0, Math.PI * 2);
   ctx.fill();
 
-  // Dirt texture dots
+  // Dirt texture
   ctx.fillStyle = COLORS.darkBrown;
   const dotSeed = Math.floor(hx * 7 + hy * 13);
   for (let i = 0; i < 8; i++) {
@@ -242,19 +213,17 @@ function drawDirtMound(ctx, hole) {
     ctx.fill();
   }
 
-  // Grass tufts on top edges
-  ctx.strokeStyle = COLORS.grassGreen;
+  // Grass tufts
+  ctx.strokeStyle = COLORS.emerald;
   ctx.lineWidth = 2;
   ctx.lineCap = 'round';
   for (let i = -2; i <= 2; i++) {
     const gx = hx + i * 12;
     const gy = hy - moundH + 2;
-    // Left-leaning blade
     ctx.beginPath();
     ctx.moveTo(gx, gy);
     ctx.lineTo(gx - 3, gy - 6 - (i % 2) * 2);
     ctx.stroke();
-    // Right-leaning blade
     ctx.beginPath();
     ctx.moveTo(gx, gy);
     ctx.lineTo(gx + 3, gy - 5 - ((i + 1) % 2) * 2);
@@ -263,41 +232,37 @@ function drawDirtMound(ctx, hole) {
   ctx.lineCap = 'butt';
 }
 
-// --- Sprite: Hole Interior ---
+// --- Hole Interiors ---
 function drawHoleInteriors(ctx, holes) {
   holes.forEach((hole) => {
-    // Hole shadow
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
     ctx.beginPath();
     ctx.ellipse(hole.x + 2, hole.y + 3, HOLE_WIDTH / 2 + 6, HOLE_HEIGHT / 2 + 2, 0, 0, Math.PI * 2);
     ctx.fill();
 
-    // Deep dark hole
-    ctx.fillStyle = COLORS.darkNavy;
+    ctx.fillStyle = COLORS.slate700;
     ctx.beginPath();
     ctx.ellipse(hole.x, hole.y, HOLE_WIDTH / 2, HOLE_HEIGHT / 2, 0, 0, Math.PI * 2);
     ctx.fill();
   });
 }
 
-// --- Sprite: Hole Rim (front lip of dirt) ---
+// --- Hole Rims ---
 function drawHoleRims(ctx, holes) {
   holes.forEach((hole) => {
-    // Front rim - clay brown, lower half ellipse to create lip effect
-    ctx.fillStyle = COLORS.clayBrown;
+    ctx.fillStyle = COLORS.warmBrown;
     ctx.beginPath();
     ctx.ellipse(hole.x, hole.y + 2, HOLE_WIDTH / 2 + 6, 8, 0, 0, Math.PI);
     ctx.fill();
 
-    // Rim highlight
-    ctx.fillStyle = COLORS.clayLight;
+    ctx.fillStyle = COLORS.warmBrownLight;
     ctx.beginPath();
     ctx.ellipse(hole.x, hole.y + 1, HOLE_WIDTH / 2 + 4, 5, 0, 0, Math.PI);
     ctx.fill();
   });
 }
 
-// --- Sprite: Mole Character (cartoon mole with face, whiskers, ears, Tamil label) ---
+// --- Mole Character ---
 function drawMoleSprite(ctx, mole, hole) {
   if (mole.state === STATES.HIDDEN) return;
 
@@ -307,13 +272,11 @@ function drawMoleSprite(ctx, mole, hole) {
   const visibleHeight = Math.max(0, groundY - visibleTop);
   if (visibleHeight <= 0) return;
 
-  // Clip to only show mole above ground
   ctx.save();
   ctx.beginPath();
   ctx.rect(moleX - MOLE_WIDTH / 2 - 2, 0, MOLE_WIDTH + 4, groundY);
   ctx.clip();
 
-  // Body coordinates - mole is 60 wide, 70 tall, centered
   const bodyW = MOLE_WIDTH;
   const bodyH = MOLE_HEIGHT;
   const cx = moleX;
@@ -322,30 +285,26 @@ function drawMoleSprite(ctx, mole, hole) {
   const bodyBottom = topY + bodyH;
   const bodyMidY = topY + bodyH * 0.45;
 
-  // --- Body shadow (offset behind) ---
+  // Body shadow
   ctx.fillStyle = COLORS.darkBrown;
   ctx.beginPath();
   ctx.ellipse(cx + 2, bodyBottom - 8, bodyW / 2 - 2, bodyH / 2 - 2, 0, 0, Math.PI * 2);
   ctx.fill();
 
-  // --- Main body (egg shape - wider at bottom) ---
-  ctx.fillStyle = COLORS.clayBrown;
+  // Main body - warmer brown
+  ctx.fillStyle = COLORS.warmBrown;
   ctx.beginPath();
-  // Top of head (narrower)
   ctx.moveTo(cx, bodyTop + 2);
-  // Right side curves out toward bottom
   ctx.bezierCurveTo(
     cx + bodyW / 2 - 2, bodyTop + 8,
     cx + bodyW / 2 + 2, bodyMidY,
     cx + bodyW / 2, bodyBottom - 8
   );
-  // Bottom (flat-ish)
   ctx.bezierCurveTo(
     cx + bodyW / 2, bodyBottom,
     cx - bodyW / 2, bodyBottom,
     cx - bodyW / 2, bodyBottom - 8
   );
-  // Left side curves back up
   ctx.bezierCurveTo(
     cx - bodyW / 2 - 2, bodyMidY,
     cx - bodyW / 2 + 2, bodyTop + 8,
@@ -353,24 +312,21 @@ function drawMoleSprite(ctx, mole, hole) {
   );
   ctx.fill();
 
-  // --- Belly/face area (lighter oval) ---
-  ctx.fillStyle = COLORS.clayLight;
+  // Belly/face area
+  ctx.fillStyle = COLORS.warmBrownLight;
   ctx.beginPath();
   ctx.ellipse(cx, bodyTop + bodyH * 0.5, bodyW / 2 - 6, bodyH / 2 - 10, 0, 0, Math.PI * 2);
   ctx.fill();
 
-  // --- Ears (small rounded bumps on top) ---
-  ctx.fillStyle = COLORS.clayBrown;
-  // Left ear
+  // Ears
+  ctx.fillStyle = COLORS.warmBrown;
   ctx.beginPath();
   ctx.ellipse(cx - bodyW / 2 + 8, bodyTop + 8, 7, 6, -0.3, 0, Math.PI * 2);
   ctx.fill();
-  // Right ear
   ctx.beginPath();
   ctx.ellipse(cx + bodyW / 2 - 8, bodyTop + 8, 7, 6, 0.3, 0, Math.PI * 2);
   ctx.fill();
-  // Ear inner (lighter)
-  ctx.fillStyle = COLORS.clayLight;
+  ctx.fillStyle = COLORS.warmBrownLight;
   ctx.beginPath();
   ctx.ellipse(cx - bodyW / 2 + 8, bodyTop + 8, 4, 3, -0.3, 0, Math.PI * 2);
   ctx.fill();
@@ -378,28 +334,23 @@ function drawMoleSprite(ctx, mole, hole) {
   ctx.ellipse(cx + bodyW / 2 - 8, bodyTop + 8, 4, 3, 0.3, 0, Math.PI * 2);
   ctx.fill();
 
-  // --- Eyes (white circles with dark pupils, slightly cross-eyed) ---
+  // Eyes
   const eyeY = bodyTop + bodyH * 0.28;
   const eyeSpacing = 9;
-  // Left eye white
   ctx.fillStyle = COLORS.cream;
   ctx.beginPath();
   ctx.ellipse(cx - eyeSpacing, eyeY, 7, 8, 0, 0, Math.PI * 2);
   ctx.fill();
-  // Right eye white
   ctx.beginPath();
   ctx.ellipse(cx + eyeSpacing, eyeY, 7, 8, 0, 0, Math.PI * 2);
   ctx.fill();
-  // Left pupil (slightly inward for cross-eyed look)
-  ctx.fillStyle = COLORS.darkNavy;
+  ctx.fillStyle = COLORS.slate800;
   ctx.beginPath();
   ctx.arc(cx - eyeSpacing + 2, eyeY + 1, 3.5, 0, Math.PI * 2);
   ctx.fill();
-  // Right pupil (slightly inward)
   ctx.beginPath();
   ctx.arc(cx + eyeSpacing - 2, eyeY + 1, 3.5, 0, Math.PI * 2);
   ctx.fill();
-  // Eye shine
   ctx.fillStyle = '#ffffff';
   ctx.beginPath();
   ctx.arc(cx - eyeSpacing + 3, eyeY - 2, 1.5, 0, Math.PI * 2);
@@ -408,30 +359,27 @@ function drawMoleSprite(ctx, mole, hole) {
   ctx.arc(cx + eyeSpacing - 1, eyeY - 2, 1.5, 0, Math.PI * 2);
   ctx.fill();
 
-  // --- Nose (pink oval at center) ---
+  // Nose
   const noseY = bodyTop + bodyH * 0.38;
   ctx.fillStyle = COLORS.molePink;
   ctx.beginPath();
   ctx.ellipse(cx, noseY, 6, 4.5, 0, 0, Math.PI * 2);
   ctx.fill();
-  // Nose highlight
-  ctx.fillStyle = '#ff8ec4';
+  ctx.fillStyle = COLORS.molePinkLight;
   ctx.beginPath();
   ctx.ellipse(cx - 1, noseY - 1, 2.5, 1.5, 0, 0, Math.PI * 2);
   ctx.fill();
 
-  // --- Whiskers (3 thin lines on each side) ---
+  // Whiskers
   ctx.strokeStyle = COLORS.darkBrown;
   ctx.lineWidth = 1;
   const whiskerY = noseY + 3;
-  // Left whiskers
   for (let w = -1; w <= 1; w++) {
     ctx.beginPath();
     ctx.moveTo(cx - 8, whiskerY + w * 3);
     ctx.lineTo(cx - 24, whiskerY + w * 5 - 2);
     ctx.stroke();
   }
-  // Right whiskers
   for (let w = -1; w <= 1; w++) {
     ctx.beginPath();
     ctx.moveTo(cx + 8, whiskerY + w * 3);
@@ -439,31 +387,29 @@ function drawMoleSprite(ctx, mole, hole) {
     ctx.stroke();
   }
 
-  // --- Smile line ---
+  // Smile
   ctx.strokeStyle = COLORS.darkBrown;
   ctx.lineWidth = 1.5;
   ctx.beginPath();
   ctx.arc(cx, noseY + 2, 8, 0.2, Math.PI - 0.2);
   ctx.stroke();
 
-  // --- Tamil character on chest/belly ---
+  // Tamil character on belly
   if (mole.character && visibleHeight > 30) {
     const charY = bodyTop + bodyH * 0.65;
-    // Text shadow for readability
     ctx.fillStyle = COLORS.darkBrown;
     ctx.font = 'bold 22px sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(mole.character.label, cx + 1, charY + 1);
-    // Main text in gold
-    ctx.fillStyle = COLORS.canaryYellow;
+    ctx.fillStyle = COLORS.gold;
     ctx.fillText(mole.character.label, cx, charY);
   }
 
   ctx.restore();
 }
 
-// --- Sprite: Whack Effect (starburst, lightning bolts, +10 text) ---
+// --- Whack Effect ---
 function drawWhackEffect(ctx, effect) {
   const progress = effect.timer / 600;
   const alpha = 1 - progress;
@@ -477,7 +423,7 @@ function drawWhackEffect(ctx, effect) {
   const rays = 8;
   const innerR = 8 * scale;
   const outerR = 22 * scale;
-  ctx.fillStyle = COLORS.neonPurple;
+  ctx.fillStyle = COLORS.violet;
   ctx.beginPath();
   for (let i = 0; i < rays * 2; i++) {
     const angle = (i * Math.PI) / rays - Math.PI / 2;
@@ -490,8 +436,8 @@ function drawWhackEffect(ctx, effect) {
   ctx.closePath();
   ctx.fill();
 
-  // Lightning bolts (4 small bolts radiating out)
-  ctx.strokeStyle = COLORS.canaryYellow;
+  // Lightning bolts
+  ctx.strokeStyle = COLORS.gold;
   ctx.lineWidth = 2;
   ctx.lineCap = 'round';
   const boltDist = 16 * scale;
@@ -499,7 +445,6 @@ function drawWhackEffect(ctx, effect) {
     const bAngle = (b * Math.PI) / 2 + progress * 2;
     const bx = Math.cos(bAngle) * boltDist;
     const by = Math.sin(bAngle) * boltDist;
-    // Zigzag bolt
     ctx.beginPath();
     ctx.moveTo(bx, by);
     ctx.lineTo(bx + 4, by + 3);
@@ -510,23 +455,22 @@ function drawWhackEffect(ctx, effect) {
   ctx.lineCap = 'butt';
 
   // +10 text
-  ctx.fillStyle = COLORS.cherryRed;
+  ctx.fillStyle = COLORS.rose;
   ctx.font = 'bold 28px sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  // Text outline for visibility
-  ctx.strokeStyle = COLORS.darkNavy;
+  ctx.strokeStyle = COLORS.slate800;
   ctx.lineWidth = 3;
   ctx.strokeText('+10', 0, -10 * scale);
   ctx.fillText('+10', 0, -10 * scale);
 
-  // Romanized text (below +10)
+  // Romanized text
   if (effect.romanized) {
     ctx.fillStyle = COLORS.cream;
     ctx.font = 'bold 18px sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.strokeStyle = COLORS.darkNavy;
+    ctx.strokeStyle = COLORS.slate800;
     ctx.lineWidth = 2;
     ctx.strokeText(effect.romanized, 0, 10 * scale);
     ctx.fillText(effect.romanized, 0, 10 * scale);
@@ -535,7 +479,7 @@ function drawWhackEffect(ctx, effect) {
   ctx.restore();
 }
 
-// --- Sprite: Wrong Hit Effect (X mark, dust clouds) ---
+// --- Wrong Hit Effect ---
 function drawWrongHitEffect(ctx, effect) {
   const progress = effect.timer / 400;
   const alpha = 1 - progress;
@@ -545,8 +489,7 @@ function drawWrongHitEffect(ctx, effect) {
   ctx.globalAlpha = alpha;
   ctx.translate(effect.x, effect.y - rise);
 
-  // Red X mark
-  ctx.strokeStyle = COLORS.cherryRed;
+  ctx.strokeStyle = COLORS.rose;
   ctx.lineWidth = 4;
   ctx.lineCap = 'round';
   const xSize = 14;
@@ -560,8 +503,7 @@ function drawWrongHitEffect(ctx, effect) {
   ctx.stroke();
   ctx.lineCap = 'butt';
 
-  // Dust puffs (3 small brown circles)
-  ctx.fillStyle = COLORS.clayBrown;
+  ctx.fillStyle = COLORS.warmBrown;
   const puffDist = 18 * progress;
   for (let p = 0; p < 3; p++) {
     const pAngle = (p * 2.1) + 0.5;
@@ -577,10 +519,10 @@ function drawWrongHitEffect(ctx, effect) {
 }
 
 function drawPauseOverlay(ctx) {
-  ctx.fillStyle = 'rgba(15, 23, 42, 0.8)';
+  ctx.fillStyle = 'rgba(30, 41, 59, 0.8)';
   ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-  ctx.fillStyle = COLORS.canaryYellow;
+  ctx.fillStyle = COLORS.gold;
   ctx.font = 'bold 48px sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
@@ -589,6 +531,15 @@ function drawPauseOverlay(ctx) {
   ctx.fillStyle = COLORS.cream;
   ctx.font = '20px sans-serif';
   ctx.fillText('Press Escape or click Resume', CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 + 30);
+}
+
+// Wrapper functions
+function drawWhackEffects(ctx, effects) {
+  effects.forEach((effect) => drawWhackEffect(ctx, effect));
+}
+
+function drawWrongHitEffects(ctx, effects) {
+  effects.forEach((effect) => drawWrongHitEffect(ctx, effect));
 }
 
 function Game({ characters, difficulty, onGameOver }) {
@@ -609,7 +560,6 @@ function Game({ characters, difficulty, onGameOver }) {
       const next = !prev;
       isPausedRef.current = next;
       if (!next) {
-        // Reset lastTimeRef on unpause to prevent dt explosion
         lastTimeRef.current = null;
       }
       return next;
@@ -632,7 +582,6 @@ function Game({ characters, difficulty, onGameOver }) {
       if (!state || state.gameOver) return;
 
       if (isPausedRef.current) {
-        // Draw paused scene
         ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         drawBackground(ctx);
         state.holes.forEach((hole) => drawDirtMound(ctx, hole));
@@ -656,25 +605,14 @@ function Game({ characters, difficulty, onGameOver }) {
         targetCharacter: state.targetCharacter,
       });
 
-      // Draw order: background -> dirt mounds -> hole interiors -> moles -> hole rims -> effects
       ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
       drawBackground(ctx);
-
-      // Dirt mounds (behind holes)
       state.holes.forEach((hole) => drawDirtMound(ctx, hole));
-
-      // Hole interiors (dark holes)
       drawHoleInteriors(ctx, state.holes);
-
-      // Moles (clipped to above ground)
       state.moles.forEach((mole, i) => {
         drawMoleSprite(ctx, mole, state.holes[i]);
       });
-
-      // Hole rims (front lip, creates depth)
       drawHoleRims(ctx, state.holes);
-
-      // Effects on top
       drawWhackEffects(ctx, state.hitEffects);
       drawWrongHitEffects(ctx, state.wrongHitEffects);
 
@@ -754,33 +692,26 @@ function Game({ characters, difficulty, onGameOver }) {
   }, []);
 
   return (
-    <div className="game-container">
-      <HUD
-        score={hudState.score}
-        timeRemaining={hudState.timeRemaining}
-        targetCharacter={hudState.targetCharacter}
-        isPaused={isPaused}
-        onTogglePause={togglePause}
-      />
-      <canvas
-        ref={canvasRef}
-        width={CANVAS_WIDTH}
-        height={CANVAS_HEIGHT}
-        className="game-canvas"
-        onClick={handleCanvasClick}
-        onTouchStart={handleTouchStart}
-      />
+    <div className="game-wrapper">
+      <div className="game-container">
+        <HUD
+          score={hudState.score}
+          timeRemaining={hudState.timeRemaining}
+          targetCharacter={hudState.targetCharacter}
+          isPaused={isPaused}
+          onTogglePause={togglePause}
+        />
+        <canvas
+          ref={canvasRef}
+          width={CANVAS_WIDTH}
+          height={CANVAS_HEIGHT}
+          className="game-canvas"
+          onClick={handleCanvasClick}
+          onTouchStart={handleTouchStart}
+        />
+      </div>
     </div>
   );
-}
-
-// Wrapper functions that iterate over arrays (called from gameLoop)
-function drawWhackEffects(ctx, effects) {
-  effects.forEach((effect) => drawWhackEffect(ctx, effect));
-}
-
-function drawWrongHitEffects(ctx, effects) {
-  effects.forEach((effect) => drawWrongHitEffect(ctx, effect));
 }
 
 export default Game;

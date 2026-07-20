@@ -9,9 +9,9 @@ const MENU_OPTIONS = [
 ];
 
 const DIFFICULTY_OPTIONS = [
-  { key: 'easy', label: 'Easy', description: 'Slower moles, more time' },
-  { key: 'medium', label: 'Medium', description: 'Balanced challenge' },
-  { key: 'hard', label: 'Hard', description: 'Fast moles, less time' },
+  { key: 'easy', label: 'Easy', description: 'Slower moles' },
+  { key: 'medium', label: 'Medium', description: 'Balanced' },
+  { key: 'hard', label: 'Hard', description: 'Fast moles' },
 ];
 
 function Menu({ onStart }) {
@@ -26,9 +26,11 @@ function Menu({ onStart }) {
 
   return (
     <div className="menu">
+      <div className="menu-icon">{'\uD83D\uDC3F'}</div>
       <h1 className="menu-title">Tamil Whack-a-Mole</h1>
       <p className="menu-subtitle">Learn the Tamil alphabet by whacking moles!</p>
-      <p className="menu-instruction">Choose a character set to practice:</p>
+
+      <p className="menu-section-label">Choose a character set</p>
       <div className="menu-options">
         {MENU_OPTIONS.map((opt) => (
           <button
@@ -41,7 +43,8 @@ function Menu({ onStart }) {
           </button>
         ))}
       </div>
-      <p className="menu-instruction">Select difficulty:</p>
+
+      <p className="menu-section-label">Select difficulty</p>
       <div className="difficulty-options">
         {DIFFICULTY_OPTIONS.map((opt) => (
           <button
@@ -54,6 +57,7 @@ function Menu({ onStart }) {
           </button>
         ))}
       </div>
+
       <button
         className="menu-start-btn"
         disabled={!selected}

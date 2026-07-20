@@ -27,6 +27,15 @@ function formatDate(timestamp) {
   return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
 }
 
+function calculateStarRating(score) {
+  if (score >= 200) return 5;
+  if (score >= 140) return 4;
+  if (score >= 90) return 3;
+  if (score >= 50) return 2;
+  if (score >= 20) return 1;
+  return 0;
+}
+
 function App() {
   const [screen, setScreen] = useState('menu');
   const [characters, setCharacters] = useState([]);
@@ -68,41 +77,70 @@ function App() {
         />
       )}
       {screen === 'gameover' && (
-        <div className="gameover">
-          <h1 className="gameover-title">Time's Up!</h1>
-          <p className="gameover-score">Your Score: {finalScore}</p>
-          {leaderboard.length > 0 && (
-            <div className="leaderboard">
-              <h2 className="leaderboard-title">Top 10 Scores</h2>
-              <table className="leaderboard-table">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Score</th>
-                    <th>Difficulty</th>
-                    <th>Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {leaderboard.map((entry, i) => (
-                    <tr key={i} className={entry.score === finalScore ? 'leaderboard-current' : ''}>
-                      <td>{i + 1}</td>
-                      <td>{entry.score}</td>
-                      <td className="leaderboard-difficulty">{entry.difficulty}</td>
-                      <td>{formatDate(entry.date)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+        <div className="game-wrapper">
+          <div className="gameover">
+            <div className="gameover-icon">{'\uD83C\uDFC6'}</div>
+            <h1 className="gameover-title">Time's Up!</h1>
+            <p className="gameover-subtitle">Great job learning Tamil characters!</p>
+
+            <div className="gameover-stars">
+              {[...Array(5)].map((_, i) => (
+                <div
+                  key={i}
+                  className={`gameover-star ${i < calculateStarRating(finalScore) ? 'filled' : 'empty'}`}
+                />
+              ))}
             </div>
-          )}
-          <div className="gameover-buttons">
-            <button className="gameover-btn" onClick={handlePlayAgain}>
-              Play Again
-            </button>
-            <button className="gameover-btn secondary" onClick={handleBackToMenu}>
-              Back to Menu
-            </button>
+
+            <div className="gameover-cards">
+              <div className="gameover-card purple">
+                <div className="gameover-card-value">{finalScore}</div>
+                <div className="gameover-card-label">Score</div>
+              </div>
+              <div className="gameover-card green">
+                <div className="gameover-card-value">{Math.floor(finalScore / 10)}</div>
+                <div className="gameover-card-label">Correct</div>
+              </div>
+              <div className="gameover-card orange">
+                <div className="gameover-card-value" style={{ textTransform: 'capitalize' }}>{difficulty}</div>
+                <div className="gameover-card-label">Difficulty</div>
+              </div>
+            </div>
+
+            {leaderboard.length > 0 && (
+              <div className="leaderboard">
+                <div className="leaderboard-title">Top 10 Scores</div>
+                <table className="leaderboard-table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Score</th>
+                      <th>Difficulty</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {leaderboard.map((entry, i) => (
+                      <tr key={i} className={entry.score === finalScore && i === leaderboard.findIndex(e => e === entry) ? 'leaderboard-current' : ''}>
+                        <td>{i + 1}</td>
+                        <td>{entry.score}</td>
+                        <td className="leaderboard-difficulty">{entry.difficulty}</td>
+                        <td>{formatDate(entry.date)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            <div className="gameover-buttons">
+              <button className="gameover-btn primary" onClick={handlePlayAgain}>
+                Play Again
+              </button>
+              <button className="gameover-btn secondary" onClick={handleBackToMenu}>
+                Back to Menu
+              </button>
+            </div>
           </div>
         </div>
       )}
