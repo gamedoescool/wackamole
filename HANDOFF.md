@@ -54,9 +54,20 @@ src/
 │   ├── Game.js                 # Canvas renderer, requestAnimationFrame loop, click handling
 │   └── HUD.js                  # Score, timer, target character display
 ├── data/
-│   └── tamilCharacters.js      # 64 Tamil characters (13 vowels, 18 consonants, 33 compound)
+│   └── tamilCharacters.js      # 247 Tamil characters (12 vowels, 1 ayutha, 18 consonants, 216 compound)
 └── game/
     └── engine.js               # Pure game logic (state, spawning, hit detection, scoring, difficulty presets)
+
+public/
+├── audio/
+│   ├── vowels/        # 12 vowel pronunciation files
+│   ├── consonants/    # 18 consonant pronunciation files
+│   ├── compound/      # 216 compound letter pronunciation files
+│   └── special/       # 1 special character pronunciation file
+├── favicon.ico
+├── index.html
+├── manifest.json
+└── robots.txt
 ```
 
 ## How to Run
@@ -245,18 +256,27 @@ Grid is centered on the 800×720 canvas. Spans x=190..610, y=195..585.
 
 ## Tamil Character Data (tamilCharacters.js)
 
+The game includes the full Tamil alphabet: **247 characters** across 5 sets.
+
 ```js
 // Shape of each character:
-{ id: 'ka', label: 'க', romanized: 'Ka', audio: 'ka.mp3' }
+{ id: 'ka', label: 'க', romanized: 'Ka', audio: 'consonants/1.mp3' }
 
 // Named export:
 export const characterSets = {
-  vowels: [...],      // 13 characters
-  consonants: [...],  // 18 characters
-  compound: [...],    // 33 characters
-  all: [...],         // 64 characters (union of above)
+  vowels: [...],      // 12 vowels (Uyir Ezhuthu)
+  ayutha: [...],      // 1 special character (ஃ - Ayutha Ezhuthu)
+  consonants: [...],  // 18 consonants (Mei Ezhuthu)
+  compound: [...],    // 216 compound letters (Uyirmei Ezhuthu)
+  all: [...],         // 247 characters (union of above)
 };
 ```
+
+**Audio path format:**
+- Vowels: `vowels/{Tamil character}.mp3` (e.g., `vowels/அ.mp3`)
+- Ayutha: `special/ஃ.mp3`
+- Consonants: `consonants/{1-18}.mp3` (e.g., `consonants/1.mp3` for க)
+- Compound: `compound/{consonant},{vowel}.mp3` (e.g., `compound/1,2.mp3` for கா)
 
 ## Extension Points
 
@@ -279,30 +299,28 @@ ctx.drawImage(img, moleX - MOLE_WIDTH/2, visibleTop, MOLE_WIDTH, visibleHeight);
 
 ### Audio System
 
-Audio uses a progressive enhancement approach with automatic fallback:
+Audio uses MP3 pronunciation files as the primary source, with automatic fallback:
 
 ```js
-// On module load, initAudioSystem() sets up voiceschanged listener
-// to detect Tamil voices asynchronously (they load async on many browsers)
-
-// playPlaceholderAudio(character):
-// 1. If Tamil voice detected → Web Speech API (SpeechSynthesisUtterance, lang='ta-IN')
-// 2. If no Tamil voice → AudioContext fallback (C5→E5 sine wave chime)
-// 3. utterance.onerror catches silent failures (common on Windows)
+// playPlaceholderAudio(character) priority chain:
+// 1. If character.audio exists → play MP3 from /audio/ (new Audio element)
+// 2. If MP3 fails or unavailable → Web Speech API (SpeechSynthesisUtterance, lang='ta-IN')
+// 3. If no Tamil voice → AudioContext fallback (C5→E5 sine wave chime)
+// 4. utterance.onerror catches silent failures (common on Windows)
 ```
 
+**Audio files:** 247 MP3 files in `public/audio/`:
+- `public/audio/vowels/` - 12 files (Tamil-named: அ.mp3 through ஔ.mp3)
+- `public/audio/consonants/` - 18 files (numbered: 1.mp3 through 18.mp3)
+- `public/audio/compound/` - 216 files (grid: 1,1.mp3 through 18,12.mp3)
+- `public/audio/special/` - 1 file (ஃ.mp3)
+
+**Audio preloading:** On game start, Audio objects are pre-created for all characters in the selected set to warm the browser cache.
+
 **Platform support:**
-- macOS/iOS: Tamil pronunciation via Web Speech API
-- Windows: Pleasant two-tone chime via AudioContext (no MP3 downloads needed)
-- Android: Tamil pronunciation via Web Speech API (Google TTS)
-
-**Visual feedback:** All correct hits show the romanized character name floating up alongside the "+10" effect. This provides feedback even when audio is unavailable.
-
-**Design decisions:**
-- No pre-generated MP3 files — keeps the app lightweight (zero audio asset downloads)
-- AudioContext is lazy-initialized (created on first use, not on page load)
-- AudioContext uses `webkitAudioContext` fallback for Safari compatibility
-- `ctx.resume()` called if AudioContext is suspended (autoplay policy compliance)
+- All platforms: MP3 pronunciation files (primary)
+- Fallback: Web Speech API (macOS/iOS, Android)
+- Final fallback: Pleasant two-tone chime via AudioContext (all platforms)
 
 ### Adding More Characters
 
@@ -323,9 +341,9 @@ Scores are persisted in `localStorage` under key `tamilWamScores` (top 10). The 
 
 1. ~~**UI does not scale on mobile**~~ — Fixed. Touch handler calculates dynamic padding to expand hit targets to 44px minimum on small screens. CSS media query reduces container padding on mobile to maximize canvas display width. Mouse clicks remain pixel-precise on desktop.
 
-2. ~~**Audio does not work on Windows**~~ — Fixed. Replaced bare Web Speech API with progressive enhancement system: voiceschanged listener detects Tamil voices, AudioContext fallback generates a pleasant C5-E5 chime on platforms without Tamil TTS, utterance.onerror catches silent failures. Zero audio asset downloads.
+2. ~~**Audio does not work on Windows**~~ — Fixed. MP3 pronunciation files provide cross-platform audio. Web Speech API and AudioContext tone retained as fallbacks.
 
-3. ~~**Audio placeholder**~~ — Fixed. Replaced broken mp3 file loading with Web Speech API. Works on macOS/iOS; Windows has issues (see #2).
+3. ~~**Audio placeholder**~~ — Fixed. All 247 Tamil characters now have MP3 pronunciation files in public/audio/.
 
 4. ~~**HTML metadata still says CRA defaults**~~ — Fixed.
 

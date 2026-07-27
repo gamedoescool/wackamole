@@ -102,9 +102,7 @@ function playFallbackTone() {
   }
 }
 
-function playPlaceholderAudio(character) {
-  if (!character || !character.label) return;
-
+function playWebSpeech(character) {
   if (tamilVoiceAvailable === true) {
     try {
       const synth = window.speechSynthesis;
@@ -121,14 +119,40 @@ function playPlaceholderAudio(character) {
       synth.speak(utterance);
       return;
     } catch (e) {
-      // fall through
+      // Fall through to tone
     }
   }
-
+  // Final fallback: AudioContext tone
   playFallbackTone();
 }
 
-// --- Background: Sky blue playfield with soft border ---
+function playPlaceholderAudio(character) {
+  if (!character || !character.label) return;
+
+  // Primary: MP3 file playback
+  if (character.audio) {
+    try {
+      const audioSrc = process.env.PUBLIC_URL + '/audio/' + character.audio;
+      const audio = new Audio(audioSrc);
+      audio.onerror = () => {
+        // MP3 failed, fall through to Web Speech API
+        playWebSpeech(character);
+      };
+      audio.play().catch(() => {
+        // Autoplay blocked or other error, fall through
+        playWebSpeech(character);
+      });
+      return;
+    } catch (e) {
+      // Audio constructor failed, fall through
+    }
+  }
+
+  // Fallback: Web Speech API
+  playWebSpeech(character);
+}
+
+// --- Sprite: Background (grass playfield, cabinet border, rivets) ---
 function drawBackground(ctx) {
   // Sky blue base
   const grad = ctx.createLinearGradient(0, 0, 0, CANVAS_HEIGHT);
@@ -630,6 +654,14 @@ function Game({ characters, difficulty, onGameOver }) {
     gameStateRef.current = createGameState(characters, difficulty);
     lastTimeRef.current = null;
     rafRef.current = requestAnimationFrame(gameLoop);
+
+    // Preload audio files for characters in this set
+    characters.forEach(char => {
+      if (char.audio) {
+        const audio = new Audio(process.env.PUBLIC_URL + '/audio/' + char.audio);
+        audio.preload = 'auto';
+      }
+    });
 
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') togglePause();
