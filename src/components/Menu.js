@@ -3,7 +3,6 @@ import { characterSets } from '../data/tamilCharacters';
 
 const MENU_OPTIONS = [
   { key: 'vowels', label: 'Vowels', count: characterSets.vowels.length },
-  { key: 'ayutha', label: 'Ayutha', count: characterSets.ayutha.length },
   { key: 'consonants', label: 'Consonants', count: characterSets.consonants.length },
   { key: 'compound', label: 'Compound', count: characterSets.compound.length },
   { key: 'all', label: 'All Characters', count: characterSets.all.length },

@@ -20,7 +20,7 @@ Opens at [http://localhost:3000](http://localhost:3000).
 
 ## Features
 
-- **64 Tamil characters** — 13 vowels, 18 consonants, 33 compound letters
+- **247 Tamil characters** — 12 vowels, 18 consonants, 216 compound letters, 1 special character (Ayutha)
 - **3 difficulty modes** — Easy, Medium, Hard with tuned timings
 - **4×4 grid** with procedural canvas rendering (no sprites or frameworks)
 - **Audio feedback** — pronunciation on correct hit (requires audio files in `public/audio/`)
