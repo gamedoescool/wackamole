@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/wackamole/static/css/main.bf9682ae.css",
-    "main.js": "/wackamole/static/js/main.89678611.js",
+    "main.css": "/wackamole/static/css/main.08b2475f.css",
+    "main.js": "/wackamole/static/js/main.93f46a3d.js",
     "index.html": "/wackamole/index.html",
-    "main.bf9682ae.css.map": "/wackamole/static/css/main.bf9682ae.css.map",
-    "main.89678611.js.map": "/wackamole/static/js/main.89678611.js.map"
+    "main.08b2475f.css.map": "/wackamole/static/css/main.08b2475f.css.map",
+    "main.93f46a3d.js.map": "/wackamole/static/js/main.93f46a3d.js.map"
   },
   "entrypoints": [
-    "static/css/main.bf9682ae.css",
-    "static/js/main.89678611.js"
+    "static/css/main.08b2475f.css",
+    "static/js/main.93f46a3d.js"
   ]
 }
